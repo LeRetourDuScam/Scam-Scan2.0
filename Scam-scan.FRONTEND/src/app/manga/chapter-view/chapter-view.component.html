@@ -1,0 +1,36 @@
+<div class="chapter-view-container">
+  <h1>{{ chapter?.name }}</h1>
+  <p>Last updated: {{ chapter?.updated_at | date }}</p>
+  <div class="navigation-buttons">
+    <button (click)="previousChapter()" [disabled]="!hasPreviousChapter()">Chapitre Précédent</button>
+    <button (click)="nextChapter()" [disabled]="!hasNextChapter()">Chapitre Suivant</button>
+  </div>
+
+  <div class="chapter-list">
+    <label for="chapterSelect">Aller à un chapitre :</label>
+    <select id="chapterSelect" (change)="goToChapter($event)">
+        <option *ngFor="let chap of manga?.chapters" [value]="chap.slug" [selected]="chap.slug === chapter?.slug">
+          {{ chap.name }}
+        </option>
+      </select>      
+  </div>
+  <div class="chapter-images">
+    <div *ngFor="let image of chapter?.images">
+      <img [src]="image.path" alt="Image du chapitre" />
+    </div>
+  </div>
+
+  <div class="navigation-buttons">
+    <button (click)="previousChapter()" [disabled]="!hasPreviousChapter()">Chapitre Précédent</button>
+    <button (click)="nextChapter()" [disabled]="!hasNextChapter()">Chapitre Suivant</button>
+  </div>
+
+  <div class="chapter-list">
+    <label for="chapterSelect">Aller à un chapitre :</label>
+    <select id="chapterSelect" (change)="goToChapter($event)">
+        <option *ngFor="let chap of manga?.chapters" [value]="chap.slug" [selected]="chap.slug === chapter?.slug">
+          {{ chap.name }}
+        </option>
+      </select>      
+  </div>
+</div>

@@ -1,0 +1,22 @@
+header {
+  width: 100%;
+  max-width: 100%; /* Ensure no overflow */
+  background-color: #121212;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 2px solid #ffffff;
+}
+
+header h1 {
+  color: #ffffff;
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+footer {
+  background-color: #121212;
+  color: #ffffff;
+  padding: 10px;
+  text-align: center;
+  margin-top: auto;
+  border-top: 2px solid #ffffff;
+}

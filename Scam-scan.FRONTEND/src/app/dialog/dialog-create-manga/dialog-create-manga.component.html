@@ -1,0 +1,96 @@
+<div class="modalCreate">
+    <h1 mat-dialog-title>Create New Manga {{data.name}}</h1>
+    <div mat-dialog-content>
+        <form [formGroup]="createForm" fxLayout="column" fxLayoutAlign="left" fxLayoutGap="2%">
+                
+                <div class="modalCreateElement">
+                    <p>Name :</p>
+                    <mat-form-field class="thin-input">
+                        <mat-label>Name</mat-label>
+                        <input matInput type="text" formControlName="name" required (input)="onChange()">
+                    </mat-form-field>
+                </div>
+
+                <div class="modalCreateElement">
+                    <p>Description :</p>
+                    <mat-form-field class="thin-input">
+                        <mat-label>description</mat-label>
+                        <input matInput type="text" formControlName="description" required>
+                    </mat-form-field>
+                </div>
+
+                <div class="modalCreateElement">
+                    <p>Image :</p>
+                    <mat-form-field class="thin-input">
+                        <mat-label>image</mat-label>
+                        <input matInput type="text" formControlName="image" required>
+                    </mat-form-field>
+                </div>
+
+                <div class="modalCreateElement">
+                    <p>Various Name :</p>
+                    <mat-form-field class="thin-input">
+                        <mat-label>Various Name</mat-label>
+                        <input matInput type="text" formControlName="variousName" required>
+                    </mat-form-field>
+                </div>
+                <div formArrayName="chapters" *ngFor="let chapter of chapters.controls; let i = index">
+                    <p>Chapters :</p>
+                    <div [formGroupName]="i" class="chapter-group">
+                      <mat-form-field>
+                        <input matInput formControlName="name" placeholder="Chapter Name" (input)="onChangeChapter(i)">
+                      </mat-form-field>
+                      <mat-form-field  class="thin-input">
+                        <mat-label>Slug</mat-label>
+                        <input matInput type="text" formControlName="slug">
+                        </mat-form-field>
+
+                      <div formArrayName="images" *ngFor="let image of getImages(i).controls; let j = index">
+                        <p>Image :</p>
+                        <div [formGroupName]="j" class="image-group">
+                          <mat-form-field>
+                            <input matInput formControlName="path" placeholder="Image Path">
+                          </mat-form-field>
+                          <button mat-button (click)="removeImageFromChapter(i, j)">Remove Image</button>
+                        </div>
+                      </div>
+                  
+                      <button mat-button (click)="addImageToChapter(i)">Add Image</button>
+                      <button mat-button (click)="removeChapter(i)">Remove Chapter</button>
+                    </div>
+                  </div>
+                  
+                  <button mat-button (click)="addChapter()">Add Chapter</button>
+                  
+
+                <div class="modalCreateElement">
+                    <p>Slug :</p>
+                    <mat-form-field  class="thin-input">
+                        <mat-label>Slug</mat-label>
+                        <input matInput type="text" formControlName="slug">
+                    </mat-form-field>
+                </div> 
+
+                <div class="modalCreateElement">
+                    <p>Created_at :</p>
+                    <mat-form-field  class="thin-input">
+                        <mat-label>Created_at</mat-label>
+                        <input matInput type="text" formControlName="created_at">
+                    </mat-form-field>
+                </div> 
+
+                <div class="modalCreateElement">
+                    <p>Updated_at :</p>
+                    <mat-form-field  class="thin-input">
+                        <mat-label>Updated_at</mat-label>
+                        <input matInput type="text" formControlName="updated_at">
+                    </mat-form-field>
+                </div> 
+        </form>
+    </div>
+
+    <div mat-dialog-actions [align]="'end'">
+        <button mat-button (click)="onCancel()" cdkFocusInitial>Cancel</button>
+        <button mat-button (click)="onSave()">Save</button>
+      </div>
+</div>

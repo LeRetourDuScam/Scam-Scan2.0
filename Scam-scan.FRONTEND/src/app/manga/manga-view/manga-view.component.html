@@ -1,0 +1,49 @@
+<div class="mangas-page-container">  
+    <div class="content-wrapper">        
+          <div class="manga-card">
+            <mat-card class="manga-card-content">
+              <mat-card-header>
+                <mat-card-title>{{ manga?.name }}</mat-card-title>
+              </mat-card-header>
+              <div class="card-content-container">
+                <div class="large">
+                  <img mat-card-image [src]="manga?.image" alt="{{ manga?.name }}" class="manga-image"/>
+                </div>
+                <div class="right">
+                    <h2>Manga Diffenrent Names:</h2>
+                      <p>{{ manga?.variousName }}</p>
+                    <h2>Manga Description:</h2>
+                      <p>{{ manga?.description }}</p>
+                      
+                    <mat-card-actions>
+                    </mat-card-actions>
+                </div>
+              </div>
+            </mat-card>
+          </div>
+    </div>
+    <div class="table-wrapper">
+      <table mat-table [dataSource]="dataSource" class="mat-table-manga">
+
+        <ng-container matColumnDef="No">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element; let i = index"> {{i + 1}} </td> 
+        </ng-container>
+      
+        <ng-container matColumnDef="chapter">
+          <th mat-header-cell *matHeaderCellDef> Chapter </th>
+          <td mat-cell *matCellDef="let chapter"> {{chapter.name}} </td> 
+        </ng-container>
+      
+        <ng-container matColumnDef="updated_at">
+          <th mat-header-cell *matHeaderCellDef> Updated at </th>
+          <td mat-cell *matCellDef="let chapter"> {{chapter.updated_at |date}} </td> 
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/manga/view', manga?.slug, 'chapter', row.slug]"></tr>
+      </table>
+    </div>
+    
+      
+</div>
