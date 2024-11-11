@@ -1,35 +1,13 @@
-/* Supprimer les marges et padding du body et du html */
 html, body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;  /* Prevent horizontal overflow */
-  background-color: #000000;  /* Fond noir total */
+  overflow-x: hidden; 
+  background-color: #000; 
   height: 100%;
-  color: #ffffff;
+  color: #fff;
 }
-
-/* Pour toutes les sections */
 .content-wrapper, .hero-section, .mangas-page-container {
   width: 100%;
-  max-width: 100%;  /* Ensure no overflow */
-  background-color: #000000;  /* Totalement noir */
-}
-
-.navbar ul {
-  display: flex;
-  justify-content: center;
-  padding: 10px;
-  gap: 50px;  /* Reduced gap to prevent overflow */
-  list-style-type: none;
-}
-
-.navbar li a {
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 1.1rem;
-  font-weight: 500;
-}
-
-.navbar li a:hover {
-  color: #00ffcc;
+  max-width: 100%;  
+  background-color: #000; 
 }

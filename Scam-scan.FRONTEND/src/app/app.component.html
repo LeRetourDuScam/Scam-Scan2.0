@@ -1,10 +1,10 @@
 <header class="header">
   <div class="logo" routerLink="/manga">MangaSite</div>
-  <app-search-bar *ngIf="isLoggedIn()"></app-search-bar>
-  <div class="auth-buttons">
+  <div class="auth-buttons search-bar">
     <button *ngIf="!isLoggedIn()" routerLink="/login">Se connecter</button>
     <button *ngIf="!isLoggedIn()" routerLink="/register">S'inscrire</button>
     <button *ngIf="isLoggedIn()" (click)="logout()">Déconnexion</button>
+    <app-search-bar *ngIf="isLoggedIn()"></app-search-bar>
   </div>
 </header>
 

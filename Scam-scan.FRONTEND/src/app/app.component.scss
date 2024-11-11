@@ -11,7 +11,10 @@
 /* Boutons d'authentification */
 .auth-buttons {
   display: flex;
-  gap: 10px;
+  gap: 20px;
+}
+.search-bar{
+  margin-right: 50px;
 }
 
 .logo {
@@ -31,7 +34,6 @@
   background-color: #FFC107;
   color: #fff;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
@@ -45,6 +47,6 @@
 footer {
   text-align: center;
   padding: 15px;
-  background-color: #1e1e1e;
+  background-color: #121212;
   color: #ffffff;
 }

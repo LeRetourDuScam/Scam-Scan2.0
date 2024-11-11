@@ -26,7 +26,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { SearchBarComponent } from './others/search-bar/search-bar.component';
 import { RegisterComponent } from './others/register/register.component';
 import { LoginComponent } from './others/login/login.component';
-import { SnackbarComponent } from './others/snackbar/snackbar.component';
 
 @NgModule({
   declarations: [
@@ -38,8 +37,7 @@ import { SnackbarComponent } from './others/snackbar/snackbar.component';
     ContactComponent,
     SearchBarComponent,
     RegisterComponent,
-    LoginComponent,
-    SnackbarComponent    
+    LoginComponent
   ],
   imports: [
     BrowserModule,
