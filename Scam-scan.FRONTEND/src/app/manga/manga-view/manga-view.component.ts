@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MangaService } from '../../shared/services/manga.service';
-import { Manga } from '../../shared/models/manga';
+import { Manga } from '../../shared/models/manga.model';
 import { MatTableDataSource } from '@angular/material/table';
-import { Chapter } from 'src/app/shared/models/chapter';
+import { Chapter } from 'src/app/shared/models/chapter.model';
 
 @Component({
   selector: 'app-manga-view',

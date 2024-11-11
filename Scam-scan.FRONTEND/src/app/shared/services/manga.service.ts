@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpStatusCode } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Manga, MangaGet } from '../models/manga';
+import { Manga, MangaGet } from '../models/manga.model';
 import { MangaParams } from '../params/manga-params';
 import { generateUrl } from '../helpers/generate-url.helper';
 @Injectable({

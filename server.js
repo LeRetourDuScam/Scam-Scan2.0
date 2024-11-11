@@ -3,6 +3,7 @@ const cors = require('cors');
 const mongoose = require('./config/database');
 const mangaRoutes = require('./routes/mangaRoutes'); // Importer les routes
 const contactRoutes = require('./routes/contactRoutes');
+const userRoutes = require('./routes/userRoutes')
 
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(cors());
 // Utiliser les routes
 app.use('/api/mangas', mangaRoutes);
 app.use('/api/contacts', contactRoutes);
+app.use('/api/user',userRoutes)
 
 // Démarrage du serveur
 const PORT = process.env.PORT || 3000;

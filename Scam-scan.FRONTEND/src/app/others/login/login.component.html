@@ -1,0 +1,10 @@
+<h2>Connexion</h2>
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+  <label for="username">Nom d'utilisateur</label>
+  <input type="text" id="username" formControlName="username" required />
+
+  <label for="password">Mot de passe</label>
+  <input type="password" id="password" formControlName="password" required />
+
+  <button type="submit" [disabled]="loginForm.invalid">Se connecter</button>
+</form>

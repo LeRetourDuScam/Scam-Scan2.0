@@ -1,9 +1,15 @@
 <header class="header">
   <div class="logo" routerLink="/manga">MangaSite</div>
-  <app-search-bar></app-search-bar>
+  <app-search-bar *ngIf="isLoggedIn()"></app-search-bar>
+  <div class="auth-buttons">
+    <button *ngIf="!isLoggedIn()" routerLink="/login">Se connecter</button>
+    <button *ngIf="!isLoggedIn()" routerLink="/register">S'inscrire</button>
+    <button *ngIf="isLoggedIn()" (click)="logout()">Déconnexion</button>
+  </div>
 </header>
 
 <router-outlet></router-outlet>
+
 <footer>
   <p>&copy; 2024 My Manga Website. All rights reserved.</p>
 </footer>

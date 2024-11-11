@@ -7,15 +7,14 @@
 }
 
 .content-wrapper {
-  width: 80%; /* Ajustez selon le besoin */
-  max-width: 1200px; /* Limite la largeur maximale */
-  background-color: #121212; /* Par exemple */
+  width: 80%;
+  max-width: 1200px;
+  background-color: #121212;
   padding: 20px;
   border-radius: 10px;
 }
 
-
-/* Manga List Section */
+/* Section de liste des mangas */
 .manga-list-section {
   width: 100%;
   background-color: #1e1e1e;
@@ -26,10 +25,10 @@
 .manga-list-section h2 {
   font-size: 2rem;
   margin-bottom: 20px;
-  color: #ffffff;
+  color: #FFC107; /* Jaune pour le texte de titre */
 }
 
-/* Manga Grid */
+/* Grille des mangas */
 .manga-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -37,7 +36,7 @@
   max-width: 100%;
 }
 
-/* Manga Card */
+/* Carte de chaque manga */
 .manga-card {
   padding: 20px;
   cursor: pointer;
@@ -46,19 +45,35 @@
 
 .manga-card-content {
   background-color: #2c2c2c;
-  border: 1px solid #ffffff;
+  border: 1px solid #FFC107; /* Jaune pour la bordure */
 }
 
 .manga-card-content:hover {
   transform: translateY(-5px);
-  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 8px rgba(255, 193, 7, 0.2); /* Ombre jaune */
 }
 
-.manga-card-header mat-card-title {
+/* Liens des chapitres dans la carte manga */
+.manga-card-content div {
+  color: #FFC107; /* Jaune pour les liens */
+  font-weight: bold;
+  text-decoration: none;
+  display: block;
+  margin-top: 5px;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.manga-card-content div:hover {
+  color: #FFD54F; /* Jaune plus clair au survol */
+  text-decoration: underline;
+}
+
+::ng-deep .manga-card-header .mat-card-title {
   font-size: 1.5rem;
-  color: #ffffff;
+  color: #FFC107; /* Jaune pour le titre de la carte */
 }
 
+/* Image du manga */
 .manga-image {
   width: 100%;
   max-width: 100%;
@@ -67,23 +82,30 @@
   margin-bottom: 10px;
 }
 
-/* Manga card actions */
+/* Boutons d'actions de la carte manga */
 .mat-card-actions button {
-  color: #ff4081;
+  color: #FFC107; /* Jaune pour le texte du bouton */
+  background-color: transparent;
+  border: 1px solid #FFC107;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .mat-card-actions button:hover {
-  background-color: rgba(255, 64, 129, 0.1);
+  background-color: #FFD54F; /* Jaune clair au survol */
+  color: #121212;
 }
 
-/* Responsive Adjustments */
+/* Ajustements pour la grille sur mobile */
 @media (max-width: 768px) {
   .manga-grid {
     grid-template-columns: 1fr;
   }
 }
 
-
+/* Boutons de navigation */
 .navigation-buttons {
   display: flex;
   justify-content: center;
@@ -93,8 +115,8 @@
 
 .navigation-buttons button {
   padding: 10px 20px;
-  background-color: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
+  background-color: rgba(255, 193, 7, 0.2); /* Jaune léger pour les boutons */
+  color: #FFC107; /* Texte jaune */
   border: none;
   border-radius: 5px;
   font-size: 1rem;
@@ -108,11 +130,11 @@
 }
 
 .navigation-buttons button:hover:not(:disabled) {
-  background-color: rgb(85, 62, 62);
+  background-color: #FFD54F; /* Jaune clair au survol */
   transform: translateY(-3px);
 }
 
 .navigation-buttons button:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.3); /* Jaune en focus */
 }

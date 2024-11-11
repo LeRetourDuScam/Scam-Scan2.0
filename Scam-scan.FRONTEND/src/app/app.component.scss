@@ -1,23 +1,50 @@
+/* Entête principale */
 .header {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Sépare le logo et la barre de recherche */
+  justify-content: space-between;
   padding: 10px 20px;
-  background-color: #333;
-  color: white;
+  background-color: #121212;
+  color: #ffffff;
+}
+
+/* Boutons d'authentification */
+.auth-buttons {
+  display: flex;
+  gap: 10px;
 }
 
 .logo {
-  font-size: 1.5em;
+  font-size: 1.5rem;
   font-weight: bold;
   cursor: pointer;
+  color: #FFC107;
+  transition: color 0.3s;
 }
 
+.logo:hover {
+  color: #FFD54F;
+}
 
-mat-icon[matSuffix] {
-  position: absolute;
-  right: 10px;
+.auth-buttons button {
+  padding: 8px 12px;
+  background-color: #FFC107;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  color: white;
+  transition: background-color 0.3s;
 }
 
+.auth-buttons button:hover {
+  background-color: #FFD54F;
+}
+
+
+/* Pied de page */
+footer {
+  text-align: center;
+  padding: 15px;
+  background-color: #1e1e1e;
+  color: #ffffff;
+}

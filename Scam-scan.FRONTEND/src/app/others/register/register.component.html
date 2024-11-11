@@ -1,0 +1,13 @@
+<h2>Inscription</h2>
+<form [formGroup]="registerForm" (ngSubmit)="register()">
+  <label for="username">Nom d'utilisateur</label>
+  <input type="text" id="username" formControlName="username" required />
+
+  <label for="email">Email</label>
+  <input type="email" id="email" formControlName="email" required />
+
+  <label for="password">Mot de passe</label>
+  <input type="password" id="password" formControlName="password" required />
+
+  <button type="submit" [disabled]="registerForm.invalid">S'inscrire</button>
+</form>

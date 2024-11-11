@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
-import { Chapter } from 'src/app/shared/models/chapter';
-import { Manga } from 'src/app/shared/models/manga';
+import { Chapter } from 'src/app/shared/models/chapter.model';
+import { Manga } from 'src/app/shared/models/manga.model';
 import { MangaService } from 'src/app/shared/services/manga.service';
 
 @Component({

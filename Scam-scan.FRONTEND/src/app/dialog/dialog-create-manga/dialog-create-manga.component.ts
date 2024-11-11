@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Chapter } from 'src/app/shared/models/chapter';
-import { Manga } from 'src/app/shared/models/manga';
+import { Chapter } from 'src/app/shared/models/chapter.model';
+import { Manga } from 'src/app/shared/models/manga.model';
 import { MangaService } from 'src/app/shared/services/manga.service';
 import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 
@@ -82,7 +82,6 @@ export class DialogCreateMangaComponent implements OnInit {
       this.createForm.get('slug')?.setValue(name.replace(' ', '-'));
     } else {
       this.createForm.markAllAsTouched();
-      this.snackbarService.showError();
     }
   }
   onChangeChapter(index: number): void {
@@ -94,7 +93,6 @@ export class DialogCreateMangaComponent implements OnInit {
         chapterControl.get('slug')?.setValue(slug); // Met à jour le champ "slug"
     } else {
         this.createForm.markAllAsTouched();
-        this.snackbarService.showError();
     }
 }
 

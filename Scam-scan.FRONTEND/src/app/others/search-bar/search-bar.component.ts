@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
-import {Manga } from 'src/app/shared/models/manga';
+import {Manga } from 'src/app/shared/models/manga.model';
 import { MangaService } from 'src/app/shared/services/manga.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 @Component({

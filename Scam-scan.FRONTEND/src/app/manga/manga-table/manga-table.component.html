@@ -15,7 +15,7 @@
             <img mat-card-image [src]="manga.image" alt="{{ manga.name }}" class="manga-image" />
             <mat-card-content>
               <div *ngFor="let chapter of getLastChapters(manga)">
-                {{ chapter.name }} ajouté : {{ chapter.updated_at | date }}
+                <div [routerLink]="['/manga/view', manga?.slug, 'chapter', chapter.slug]">{{ chapter.name }} ajouté : {{ chapter.updated_at | date }} </div>
               </div>
             </mat-card-content>
           </mat-card>

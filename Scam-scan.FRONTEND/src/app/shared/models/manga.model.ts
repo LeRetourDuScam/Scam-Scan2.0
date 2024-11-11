@@ -1,4 +1,4 @@
-import { Chapter } from './chapter'
+import { Chapter } from './chapter.model'
 export class Manga {
     name: string;
     slug: string;
