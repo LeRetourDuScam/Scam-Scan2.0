@@ -32,6 +32,19 @@ exports.getMangas = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+// SEARCH : Rechercher des mangas par nom
+exports.searchMangas = async (req, res) => {
+    const searchTerm = req.query.q;
+    try {
+        const mangas = await Manga.find({
+            name: { $regex: searchTerm, $options: 'i' } // Recherche insensible à la casse
+        }).limit(10); // Limite les résultats de recherche à 10 mangas
+        
+        res.json(mangas);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
 
 
 // READ : Obtenir un manga par son slug

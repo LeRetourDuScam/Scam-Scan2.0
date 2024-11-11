@@ -37,4 +37,7 @@ export class MangaService {
   deleteManga(slug: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/slug/${slug}`);
   }
+  searchMangas(term: string): Observable<Manga> {
+    return this.http.get<Manga>(`${this.apiUrl}/search?q=${term}`);
+  }
 }

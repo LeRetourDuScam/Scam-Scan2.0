@@ -8,5 +8,6 @@ router.get('/', mangaController.getMangas);
 router.get('/slug/:slug', mangaController.getMangaBySlug);
 router.put('/slug/:slug', mangaController.updateMangaBySlug);
 router.delete('/slug/:slug', mangaController.deleteMangaBySlug);
+router.get('/search', mangaController.searchMangas);
 
 module.exports = router;

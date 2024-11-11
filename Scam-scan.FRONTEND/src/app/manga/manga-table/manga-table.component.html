@@ -1,35 +1,34 @@
 <div class="mangas-page-container">
-  
-    <div class="content-wrapper">
-      <section class="manga-list-section">
-        <h2>All Mangas</h2>
-  
-        <div class="manga-grid" >
-          <div class="manga-card" *ngFor="let manga of mangas" [routerLink]="['/manga/view/'+manga.slug]">
-            <mat-card class="manga-card-content">
-              <mat-card-header>
-                <mat-card-title>{{ manga.name }}</mat-card-title>
-              </mat-card-header>
+  <div class="content-wrapper">
+    
+    <!-- Barre de recherche avec Reactive Forms -->
 
-                <img mat-card-image [src]="manga.image" alt="{{ manga.name }}" class="manga-image"/>
-  
-              <mat-card-content >
-                  <div *ngFor="let chapter of getLastChapters(manga)">
-                    {{chapter.name}} add: {{chapter.updated_at|date}}
-                  </div>
-              </mat-card-content>
-  
-              <mat-card-actions>
-              </mat-card-actions>
-            </mat-card>
-          </div>
+    <!-- Liste complète des mangas -->
+    <section class="manga-list-section">
+      <h2>All Mangas</h2>
+      <div class="manga-grid">
+        <div class="manga-card" *ngFor="let manga of mangas" [routerLink]="['/manga/view/' + manga.slug]">
+          <mat-card class="manga-card-content">
+            <mat-card-header>
+              <mat-card-title>{{ manga.name }}</mat-card-title>
+            </mat-card-header>
+            <img mat-card-image [src]="manga.image" alt="{{ manga.name }}" class="manga-image" />
+            <mat-card-content>
+              <div *ngFor="let chapter of getLastChapters(manga)">
+                {{ chapter.name }} ajouté : {{ chapter.updated_at | date }}
+              </div>
+            </mat-card-content>
+          </mat-card>
         </div>
-      </section>
-      <div class="navigation-buttons">
-        <button (click)="previousPage()" [disabled]="!hasPreviousPage()">Page Précédent</button>
-        <button (click)="nextPage()" [disabled]="!hasNextPage()">Page Suivant</button>
       </div>
+    </section>
 
+    <!-- Boutons de navigation pour la pagination -->
+    <div class="navigation-buttons">
+      <button (click)="firstPage()" [disabled]="!hasPreviousPage()">Première Page</button>
+      <button (click)="previousPage()" [disabled]="!hasPreviousPage()">Page Précédent</button>
+      <button (click)="nextPage()" [disabled]="!hasNextPage()">Page Suivant</button>
+      <button (click)="LastPage()" [disabled]="!hasNextPage()">Dernière Page</button>
     </div>
   </div>
-  
+</div>

@@ -1,22 +1,23 @@
-header {
-  width: 100%;
-  max-width: 100%; /* Ensure no overflow */
-  background-color: #121212;
-  padding: 20px;
-  text-align: center;
-  border-bottom: 2px solid #ffffff;
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Sépare le logo et la barre de recherche */
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
 }
 
-header h1 {
-  color: #ffffff;
-  font-size: 2.5rem;
-  font-weight: 600;
+.logo {
+  font-size: 1.5em;
+  font-weight: bold;
+  cursor: pointer;
 }
-footer {
-  background-color: #121212;
-  color: #ffffff;
-  padding: 10px;
-  text-align: center;
-  margin-top: auto;
-  border-top: 2px solid #ffffff;
+
+
+mat-icon[matSuffix] {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  color: white;
 }
+

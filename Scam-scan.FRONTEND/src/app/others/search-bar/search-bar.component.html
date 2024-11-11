@@ -1,0 +1,18 @@
+<div class="search-bar-container" [formGroup]="searchForm">
+    <input
+      matInput
+      placeholder="Rechercher un manga"
+      formControlName="searchTerm"
+      class="search-input"
+    />
+  
+    <!-- Results displayed below the search bar -->
+    <div *ngIf="filteredMangas.length > 0" class="search-results">
+      <div *ngFor="let manga of filteredMangas" class="search-result-item">
+        <a 
+          [routerLink]="['/manga/view', manga.slug]" 
+          class="search-result-link" 
+          (click)="onLinkClick('/manga/view/' + manga.slug)">{{ manga.name }}</a>
+      </div>
+    </div>
+  </div>
