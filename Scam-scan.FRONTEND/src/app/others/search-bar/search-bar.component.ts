@@ -1,21 +1,25 @@
 import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
-import {Manga } from 'src/app/shared/models/manga.model';
+import { Manga } from 'src/app/shared/models/manga.model';
 import { MangaService } from 'src/app/shared/services/manga.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss']
 })
-export class SearchBarComponent implements OnInit{
+export class SearchBarComponent implements OnInit {
   public filteredMangas: Manga[] = [];
   public searchForm: FormGroup;
-  clickListener: any;
-  isFocused = false;
 
   constructor(
     private mangaService: MangaService,
     private fb: FormBuilder,
+    private eRef: ElementRef,
+    private renderer: Renderer2,
+    private router: Router
   ) {
     this.searchForm = this.fb.group({
       searchTerm: ['']
@@ -24,10 +28,17 @@ export class SearchBarComponent implements OnInit{
 
   ngOnInit(): void {
     this.filteredMangas = [];
-    this.searchForm.get('searchTerm')?.valueChanges.subscribe((term: string) => {
-      this.onSearch(term);
+    this.searchForm.get('searchTerm')?.valueChanges
+      .pipe(debounceTime(300))
+      .subscribe((term: string) => {
+        this.onSearch(term);
+      });
+
+    this.renderer.listen('window', 'click', (e: Event) => {
+      if (!this.eRef.nativeElement.contains(e.target)) {
+        this.filteredMangas = [];
+      }
     });
-  
   }
 
   onSearch(term: string): void {
@@ -40,9 +51,9 @@ export class SearchBarComponent implements OnInit{
     }
   }
 
-  onLinkClick(url:any): void {
+  onLinkClick(url: string): void {
     this.filteredMangas = [];
     this.searchForm.get('searchTerm')?.setValue('');
-    window.location.href = url;
+    this.router.navigateByUrl(url);
   }
 }

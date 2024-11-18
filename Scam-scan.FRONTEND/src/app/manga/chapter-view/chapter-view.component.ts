@@ -78,9 +78,7 @@ export class ChapterViewComponent implements OnInit {
   private navigateToChapter(index: number): void {
     if (this.manga) {
       const targetChapter = this.manga.chapters[index];
-      const url = `/manga/view/${this.slug}/chapter/${targetChapter.slug}`;
-    
-      window.location.href = url;
+      this.router.navigate(['/manga/view', this.manga.slug, 'chapter', targetChapter.slug]);
     }
   }
 }

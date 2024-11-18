@@ -1,13 +1,10 @@
 <div class="mangas-page-container">
   <div class="content-wrapper">
-    
-    <!-- Barre de recherche avec Reactive Forms -->
-
     <!-- Liste complète des mangas -->
     <section class="manga-list-section">
       <h2>All Mangas</h2>
       <div class="manga-grid">
-        <div class="manga-card" *ngFor="let manga of mangas" [routerLink]="['/manga/view/' + manga.slug]">
+        <div class="manga-card" *ngFor="let manga of mangas" [routerLink]="['/manga/view', manga.slug]">
           <mat-card class="manga-card-content">
             <mat-card-header>
               <mat-card-title>{{ manga.name }}</mat-card-title>
@@ -15,7 +12,7 @@
             <img mat-card-image [src]="manga.image" alt="{{ manga.name }}" class="manga-image" />
             <mat-card-content>
               <div *ngFor="let chapter of getLastChapters(manga)">
-                <div [routerLink]="['/manga/view', manga?.slug, 'chapter', chapter.slug]">{{ chapter.name }} ajouté : {{ chapter.updated_at | date }} </div>
+                <div [routerLink]="['/manga/view', manga.slug, 'chapter', chapter.slug]">{{ chapter.name }} ajouté : {{ chapter.updated_at | date }} </div>
               </div>
             </mat-card-content>
           </mat-card>
