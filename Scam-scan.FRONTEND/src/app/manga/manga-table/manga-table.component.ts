@@ -97,20 +97,6 @@ export class MangaTableComponent implements OnInit {
     }
   }
 
-  LastPage(): void {
-    if (this.hasNextPage()) {
-      this.MangaParams.pageNumber = Math.ceil(this.countMangas / this.MangaParams.pageSize);
-      this.GetAllMangas();
-    }
-  }
-
-  firstPage(): void {
-    if (this.hasNextPage()) {
-      this.MangaParams.pageNumber = 1;
-      this.GetAllMangas();
-    }
-  }
-
   refreshManga() {
     this.MangaParams.pageNumber = 1;
     this.GetAllMangas();

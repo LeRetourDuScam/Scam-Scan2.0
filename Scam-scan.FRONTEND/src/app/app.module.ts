@@ -24,8 +24,9 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { SearchBarComponent } from './others/search-bar/search-bar.component';
-import { RegisterComponent } from './others/register/register.component';
-import { LoginComponent } from './others/login/login.component';
+import { RegisterComponent } from './user/register/register.component';
+import { LoginComponent } from './user/login/login.component';
+import { ProfilComponent } from './user/profil/profil.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { LoginComponent } from './others/login/login.component';
     ContactComponent,
     SearchBarComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    ProfilComponent
   ],
   imports: [
     BrowserModule,

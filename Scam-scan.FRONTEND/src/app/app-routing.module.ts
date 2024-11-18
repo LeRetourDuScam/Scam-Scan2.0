@@ -4,8 +4,8 @@ import { MangaTableComponent } from './manga/manga-table/manga-table.component';
 import { MangaViewComponent } from './manga/manga-view/manga-view.component';
 import { ChapterViewComponent } from './manga/chapter-view/chapter-view.component';
 import { ContactComponent } from './others/contact/contact.component';
-import { LoginComponent } from './others/login/login.component';
-import { RegisterComponent } from './others/register/register.component';
+import { LoginComponent } from './user/login/login.component';
+import { RegisterComponent } from './user/register/register.component';
 const routes: Routes = [
   { path: 'manga', component: MangaTableComponent },
   { path: 'manga/view/:slug', component: MangaViewComponent },

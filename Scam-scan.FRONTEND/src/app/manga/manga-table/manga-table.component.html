@@ -25,10 +25,8 @@
 
     <!-- Boutons de navigation pour la pagination -->
     <div class="navigation-buttons">
-      <button (click)="firstPage()" [disabled]="!hasPreviousPage()">Première Page</button>
       <button (click)="previousPage()" [disabled]="!hasPreviousPage()">Page Précédent</button>
       <button (click)="nextPage()" [disabled]="!hasNextPage()">Page Suivant</button>
-      <button (click)="LastPage()" [disabled]="!hasNextPage()">Dernière Page</button>
     </div>
   </div>
 </div>
