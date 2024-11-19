@@ -14,7 +14,7 @@ import { MangaViewComponent } from './manga/manga-view/manga-view.component';
 import{DialogCreateMangaComponent} from './dialog/dialog-create-manga/dialog-create-manga.component'
 import { ChapterViewComponent } from './manga/chapter-view/chapter-view.component';
 import { ContactComponent } from './others/contact/contact.component';
-
+import { HomepageComponent } from './homepage/homepage.component';
 // Angular Material Modules
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -27,7 +27,6 @@ import { SearchBarComponent } from './others/search-bar/search-bar.component';
 import { RegisterComponent } from './user/register/register.component';
 import { LoginComponent } from './user/login/login.component';
 import { ProfilComponent } from './user/profil/profil.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +38,9 @@ import { ProfilComponent } from './user/profil/profil.component';
     SearchBarComponent,
     RegisterComponent,
     LoginComponent,
-    ProfilComponent
+    ProfilComponent,
+    HomepageComponent,
+    
   ],
   imports: [
     BrowserModule,

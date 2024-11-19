@@ -9,14 +9,5 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(private authService: AuthService, private router: Router) {}
-
-  isLoggedIn() {
-    return this.authService.isLoggedIn();
-  }
-
-  logout() {
-    this.authService.logout();
-    this.router.navigate(['/login']); // Redirige vers la page de connexion après déconnexion
-  }
+  constructor(public authService: AuthService) {}
 }

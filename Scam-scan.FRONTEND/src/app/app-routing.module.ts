@@ -6,14 +6,16 @@ import { ChapterViewComponent } from './manga/chapter-view/chapter-view.componen
 import { ContactComponent } from './others/contact/contact.component';
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
+import { HomepageComponent } from './homepage/homepage.component';
 const routes: Routes = [
+  {path: '', component:HomepageComponent},
   { path: 'manga', component: MangaTableComponent },
   { path: 'manga/view/:slug', component: MangaViewComponent },
   { path: 'manga/view/:slug/chapter/:chapter', component: ChapterViewComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'login', component: LoginComponent }, // Route vers le login
-  { path: 'register', component: RegisterComponent }, // Route vers le register
-  { path: '**', redirectTo: '/manga', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent }, 
+  { path: 'register', component: RegisterComponent }, 
+  { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
 @NgModule({

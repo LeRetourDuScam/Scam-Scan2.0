@@ -1,0 +1,27 @@
+<!-- Section principale (Hero) -->
+<section class="h-screen bg-cover bg-center" style="background-image: url('../../assets/img/narutoAKA.jpg');">
+  <div class="flex flex-col items-center justify-center h-full bg-black bg-opacity-50 text-white">
+    <h1 class="text-5xl font-bold">Naruto</h1>
+    <p class="text-xl mt-4">The journey of a ninja</p>
+    <button class="mt-6 bg-red-600 px-6 py-3 rounded shadow hover:bg-red-500" routerLink="/manga/view/naruto-1731326243-3542">Read Now</button>
+  </div>
+</section>
+
+<!-- Section des mises à jour récentes -->
+<section class="container mx-auto py-10">
+  <h2 class="text-3xl font-bold mb-6">Latest Manga Updates</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+    <div class="bg-white rounded shadow overflow-hidden hover:cursor-pointer" *ngFor="let manga of mangas" [routerLink]="['/manga/view', manga.slug]">
+      <img [src]="manga.image" alt="{{ manga.name }}" class="w-full h-48 object-cover">
+      <div class="p-4">
+        <h3 class="text-xl font-bold">{{ manga.name }}</h3>
+        <div *ngFor="let chapter of getLastChapters(manga)">
+          <div [routerLink]="['/manga/view', manga.slug, 'chapter', chapter.slug]" class="text-red-600 hover:underline">
+            {{ chapter.name }} ajouté : {{ chapter.updated_at | date }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

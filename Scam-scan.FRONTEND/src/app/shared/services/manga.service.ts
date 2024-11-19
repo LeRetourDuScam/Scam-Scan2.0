@@ -40,4 +40,5 @@ export class MangaService {
   searchMangas(term: string): Observable<Manga> {
     return this.http.get<Manga>(`${this.apiUrl}/search?q=${term}`);
   }
+
 }

@@ -1,15 +1,50 @@
-<header class="header">
-  <div class="logo" routerLink="/manga">MangaSite</div>
-  <div class="auth-buttons search-bar">
-    <button *ngIf="!isLoggedIn()" routerLink="/login">Se connecter</button>
-    <button *ngIf="!isLoggedIn()" routerLink="/register">S'inscrire</button>
-    <button *ngIf="isLoggedIn()" (click)="logout()">Déconnexion</button>
-    <app-search-bar *ngIf="isLoggedIn()"></app-search-bar>
+<header class="bg-red-600 text-white p-4 flex justify-between items-center">
+  <div class="flex gap-4 items-center">
+    <div routerLink="" class="text-2xl font-bold hover:cursor-pointer">MangaWorld</div>
+    <nav class="hidden md:flex space-x-4">
+      <a routerLink="" class="hover:text-gray-300">Home</a>
+      <a routerLink="/manga" class="hover:text-gray-300">Browse</a>
+    </nav>
+  </div>
+  <div class="flex items-center space-x-2">
+    <button
+      *ngIf="!this.authService.isLoggedIn()"
+      routerLink="/login"
+      class="bg-white text-red-600 px-4 py-2 rounded hover:bg-gray-200"
+    >
+      Se connecter
+    </button>
+    <button
+      *ngIf="!this.authService.isLoggedIn()"
+      routerLink="/register"
+      class="bg-white text-red-600 px-4 py-2 rounded hover:bg-gray-200"
+    >
+      S'inscrire
+    </button>
+    <button
+      *ngIf="this.authService.isLoggedIn()"
+      (click)="this.authService.logout()"
+      class="bg-white text-red-600 px-4 py-2 rounded hover:bg-gray-200"
+    >
+      Déconnexion
+    </button>
+    <app-search-bar
+      *ngIf="this.authService.isLoggedIn()"
+      class="flex-grow"
+    ></app-search-bar>
+
   </div>
 </header>
 
 <router-outlet></router-outlet>
 
-<footer>
-  <p>&copy; 2024 My Manga Website. All rights reserved.</p>
+<footer class="bg-black text-white text-center p-4">
+  <div class="container mx-auto">
+    <div class="flex justify-center space-x-4 mb-4">
+      <a routerLink="/contact" class="hover:text-gray-400">Contact</a>
+      <a routerLink="" class="hover:text-gray-400">About</a>
+      <a routerLink="" class="hover:text-gray-400">Terms</a>
+    </div>
+    <p>&copy; 2024 MangaWorld. All rights reserved.</p>
+  </div>
 </footer>

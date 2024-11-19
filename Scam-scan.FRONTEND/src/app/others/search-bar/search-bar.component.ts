@@ -39,6 +39,11 @@ export class SearchBarComponent implements OnInit {
         this.filteredMangas = [];
       }
     });
+
+    this.router.events.subscribe(() => {
+      this.filteredMangas = [];
+      this.searchForm.get('searchTerm')?.setValue('');
+    });
   }
 
   onSearch(term: string): void {
