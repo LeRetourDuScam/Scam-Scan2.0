@@ -14,7 +14,12 @@
             <p>{{ manga?.variousName }}</p>
             <h2>Manga Description:</h2>
             <p>{{ manga?.description }}</p>
-            <mat-card-actions></mat-card-actions>
+            <mat-card-actions class="mt-auto flex justify-end">
+              <button class="bg-zinc-200 text-black px-4 py-2 rounded hover:bg-zinc-300"
+              (click)="addtoFavoris(manga?.slug)">
+                <mat-icon>bookmark</mat-icon>
+              </button>
+            </mat-card-actions>
           </div>
         </div>
       </mat-card>

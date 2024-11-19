@@ -4,6 +4,8 @@ import { MangaService } from '../../shared/services/manga.service';
 import { Manga } from '../../shared/models/manga.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { Chapter } from 'src/app/shared/models/chapter.model';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-manga-view',
@@ -12,11 +14,15 @@ import { Chapter } from 'src/app/shared/models/chapter.model';
 })
 export class MangaViewComponent implements OnInit{
   slug: string | null = null;
+  userId:string | null=null;
+
   public manga:  Manga | undefined;
   displayedColumns: string[] = ['No','chapter', 'updated_at'];
   dataSource: MatTableDataSource<Chapter> = new MatTableDataSource<Chapter>([]);
   constructor(private route: ActivatedRoute,
-              private mangaService: MangaService
+              private mangaService: MangaService,
+              private authService: AuthService,
+              private user:UserService
   ) {}
 
   ngOnInit(): void {
@@ -30,5 +36,11 @@ export class MangaViewComponent implements OnInit{
       this.dataSource = new MatTableDataSource<Chapter>(data.chapters);
     })
 
+  }
+  addtoFavoris(mangaSlug:any){
+    this.userId=this.authService.getUsernameFromToken();
+    this.user.AddToFavoris(mangaSlug,this.userId).subscribe(res=>{
+      console.log(res)
+    })
   }
 }

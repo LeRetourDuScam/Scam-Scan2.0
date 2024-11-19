@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
 import { Router } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,15 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
+  }
+
+  getUsernameFromToken(): string | null {
+    const token = this.getToken();
+    if (token) {
+      const decoded: any = jwtDecode(token);
+      return decoded.userId; 
+    }
+    return null;
   }
 
 }
