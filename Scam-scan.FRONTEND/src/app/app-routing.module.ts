@@ -12,7 +12,6 @@ const routes: Routes = [
   { path: 'manga', component: MangaTableComponent },
   { path: 'manga/view/:slug', component: MangaViewComponent },
   { path: 'manga/view/:slug/chapter/:chapter', component: ChapterViewComponent },
-  { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginComponent }, 
   { path: 'register', component: RegisterComponent }, 
   { path: '**', redirectTo: '', pathMatch: 'full' },
