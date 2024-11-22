@@ -15,7 +15,7 @@
             <h2 class="text-lg font-semibold">Manga Description:</h2>
             <p>{{ manga?.description }}</p>
             <div class="mt-auto flex justify-end">
-              <button class="bg-gray-200 dark:bg-gray-700 dark:text-white text-black px-4 py-2 rounded hover:bg-gray-300 dark:hover:bg-gray-600" (click)="addtoFavoris(manga?.slug)">
+              <button class="bg-gray-200 dark:bg-gray-700 dark:text-white text-black px-4 py-2 rounded hover:bg-gray-300 dark:hover:bg-gray-600" (click)="IsBookmarked(manga?.slug)" *ngIf="this.authService.isLoggedIn()">
                 <span class="material-icons">bookmark</span>
               </button>
             </div>

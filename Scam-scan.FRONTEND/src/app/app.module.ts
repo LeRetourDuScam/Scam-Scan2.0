@@ -21,6 +21,7 @@ import { ProfilComponent } from './user/profil/profil.component';
 
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import { BookmarkMangaComponent } from './manga/bookmark-manga/bookmark-manga.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { MatIconModule } from '@angular/material/icon';
     LoginComponent,
     ProfilComponent,
     HomepageComponent,
+    BookmarkMangaComponent,
     
   ],
   imports: [

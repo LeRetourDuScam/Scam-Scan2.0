@@ -5,6 +5,7 @@
       <nav class="hidden md:flex space-x-4">
         <a routerLink="" class="hover:text-gray-300">Home</a>
         <a routerLink="/manga" class="hover:text-gray-300">Browse</a>
+        <a routerLink="/bookmark" class="hover:text-gray-300 material-icons" *ngIf="this.authService.isLoggedIn()">bookmark</a>
       </nav>
     </div>
     <div class="flex items-center space-x-2">

@@ -18,7 +18,10 @@ export class UserService {
       {manga:mangaSlug});
   }
 
-  deleteFavoris(slug: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${slug}`);
+  deleteFavoris(userId:any,slug: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/favoritesManga/${userId}`,{body:{manga:slug}});
+  }
+  GetFavoris(userId: string): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/favoritesManga/${userId}`);
   }
 }

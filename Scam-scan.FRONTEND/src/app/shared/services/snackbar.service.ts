@@ -22,5 +22,11 @@ export class SnackbarService {
   showError(): void {
     this.showSnackbar('An error occurred!', 'Retry', 5000);
   }
+  deletedBookmark(){
+    this.showSnackbar('Manga is deleted from bookmark!','Close',300);
+  }
+  addedBookmark(){
+    this.showSnackbar('Manga is added to bookmark!','Close',300);
+  }
 }
 

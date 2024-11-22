@@ -30,7 +30,7 @@ exports.loginUser = async (req, res) => {
 
 exports.getUserFavoritesManga = async (req, res) => {
     try {
-        const user = await User.findOne({ username: req.params.userId });
+        const user = await User.findOne({ _id: req.params.userId });
         if (!user) {
             return res.status(404).json({ message: 'Utilisateur non trouvé' });
         }
@@ -56,7 +56,7 @@ exports.addFavoritesManga = async (req, res) => {
 
 exports.deleteFavoritesManga = async (req, res) => {
     try {
-        const user = await User.findOne({ username: req.params.userId });
+        const user = await User.findOne({ _id: req.params.userId });
         if (!user) {
             return res.status(404).json({ message: 'Utilisateur non trouvé' });
         }
