@@ -10,4 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   constructor(public authService: AuthService) {}
+  toggleDarkMode() {
+    document.body.classList.toggle('dark');
+  }
 }

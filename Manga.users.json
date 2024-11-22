@@ -1,0 +1,104 @@
+[{
+  "_id": {
+    "$oid": "6731fea7bf964b566254f425"
+  },
+  "username": "test",
+  "email": "test@gmail.com",
+  "password": "$2a$10$Bamivc7ypqcHNMZedalZmOkzKN8HvfeZxUTsR2Pi4opUeq9S5YxJ2",
+  "role": "user",
+  "created_at": {
+    "$date": "2024-11-11T12:55:03.284Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "673206cc3e95c1e26fa6162a"
+  },
+  "username": "test2",
+  "email": "testtest@gmail.com",
+  "password": "$2a$10$GavGGgPY20U3yppr507W1OT8ideUIIi73zh2S.CHVE2hHwQm1z9CC",
+  "role": "user",
+  "created_at": {
+    "$date": "2024-11-11T13:29:48.414Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "673210613e95c1e26fa7cbba"
+  },
+  "username": "testtesttest",
+  "email": "Test@test",
+  "password": "$2a$10$cs9q2dilCbeOn3I7a05tp.j9TMxeCI3qTIMkGWmZZOWY4RgQU5jO2",
+  "role": "user",
+  "created_at": {
+    "$date": "2024-11-11T14:10:41.484Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67321bcc14823b6378438cf9"
+  },
+  "username": "daniel2",
+  "email": "daniel2@gmail.com",
+  "password": "$2a$10$lImUil1GwtO.AwBl3Qr6YOTr7J0kq2b1Su2mABQdjLKPeBZWRf/zO",
+  "role": "user",
+  "created_at": {
+    "$date": "2024-11-11T14:59:24.738Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67321ca514823b637843b8f7"
+  },
+  "username": "fswfdfssd",
+  "email": "fdsfsdfsdf#@gmail",
+  "password": "$2a$10$PdJS9EETMi3atHCsb6vaceeVeEHUhk7gAJAtrCfU4qYXfQnFVjmAm",
+  "role": "user",
+  "created_at": {
+    "$date": "2024-11-11T15:03:01.983Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67321d7114823b637843b8f9"
+  },
+  "username": "dsvfsvfsv",
+  "email": "sdvdsvsdvsd@gmail",
+  "password": "$2a$10$Pc3xW4q.AmZdQlst4NotwexEtiCfUT9J0sdFqUcwOmNlMtpu/ZPZW",
+  "role": "user",
+  "created_at": {
+    "$date": "2024-11-11T15:06:25.505Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "673b392e7a6425f91b6372c9"
+  },
+  "username": "popopo",
+  "email": "popopo@gmail.com",
+  "password": "$2a$10$tesd94364OCdhgulTk5UW.lqNVqghOO1QHPVs/ftDp/gro5Xusmde",
+  "role": "user",
+  "created_at": {
+    "$date": "2024-11-18T12:55:10.517Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "673b44e178dcb2dd30f623c8"
+  },
+  "username": "opopop",
+  "email": "opopop@gmail.com",
+  "password": "$2a$10$bCYgpmUmo7EcWqXiPfO8J.v6//cl9RfxpA6EjPpaTTscGJyTEYVaG",
+  "role": "user",
+  "created_at": {
+    "$date": "2024-11-18T13:45:05.826Z"
+  },
+  "__v": 0
+}]

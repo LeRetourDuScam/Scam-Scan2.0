@@ -11,26 +11,21 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AppComponent } from './app.component';
 import { MangaTableComponent } from './manga/manga-table/manga-table.component';
 import { MangaViewComponent } from './manga/manga-view/manga-view.component';
-import{DialogCreateMangaComponent} from './dialog/dialog-create-manga/dialog-create-manga.component'
 import { ChapterViewComponent } from './manga/chapter-view/chapter-view.component';
 import { ContactComponent } from './others/contact/contact.component';
 import { HomepageComponent } from './homepage/homepage.component';
-// Angular Material Modules
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import {MatTableModule} from '@angular/material/table';
-import { MatIconModule } from '@angular/material/icon';
 import { SearchBarComponent } from './others/search-bar/search-bar.component';
 import { RegisterComponent } from './user/register/register.component';
 import { LoginComponent } from './user/login/login.component';
 import { ProfilComponent } from './user/profil/profil.component';
+
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+
+
 @NgModule({
   declarations: [
     AppComponent,
-    DialogCreateMangaComponent,
     MangaTableComponent,
     MangaViewComponent,
     ChapterViewComponent,
@@ -47,13 +42,9 @@ import { ProfilComponent } from './user/profil/profil.component';
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatDialogModule,
-    MatButtonModule,
     RouterModule.forRoot([]),
     AppRoutingModule,
-    MatSnackBarModule,MatCardModule,
+    MatSnackBarModule,
     MatTableModule,
     MatIconModule
     ],

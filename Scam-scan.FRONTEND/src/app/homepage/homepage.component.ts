@@ -1,9 +1,6 @@
-import { Component, Input, OnInit, Renderer2 } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
 import { MangaService } from '../shared/services/manga.service';
 import { Manga } from '../shared/models/manga.model';
-import { MatDialog } from '@angular/material/dialog';
-import { Chapter } from '../shared/models/chapter.model';
 import { SnackbarService } from '../shared/services/snackbar.service';
 import { mangaParams } from 'src/app/shared/params/manga-params.const';
 import { MangaParams } from 'src/app/shared/params/manga-params';
@@ -24,7 +21,6 @@ export class HomepageComponent implements OnInit{
 
   constructor(
     private mangaService: MangaService,
-    private dialog: MatDialog,
     private snackbarService: SnackbarService,
   ) {
   }

@@ -1,31 +1,26 @@
-<div class="mangas-page-container py-10">
-  <div class="content-wrapper container mx-auto">
-    <!-- Liste complète des mangas -->
-    <section class="manga-list-section">
-      <h2 class="text-2xl font-bold text-center mb-6 text-red-600">All Mangas</h2>
-      <div class="manga-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="manga-card bg-white rounded-lg shadow-lg p-4 hover:cursor-pointer" *ngFor="let manga of mangas" [routerLink]="['/manga/view', manga.slug]">
-          <div class="manga-card-content">
-            <div class="manga-card-header mb-4">
-              <h3 class="manga-card-title text-xl font-bold">{{ manga.name }}</h3>
+<div class="py-10">
+  <div class="container mx-auto">
+    <section>
+      <h2 class="text-2xl font-bold text-center mb-6 text-red-600 dark:text-red-400">All Mangas</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white dark:bg-gray-800 dark:text-white rounded-lg shadow-lg p-4 hover:cursor-pointer" *ngFor="let manga of mangas" [routerLink]="['/manga/view', manga.slug]">
+            <div class="mb-4">
+              <h3 class="text-xl font-bold">{{ manga.name }}</h3>
             </div>
-            <img [src]="manga.image" alt="{{ manga.name }}" class="manga-image w-full h-48 object-cover rounded-lg mb-4" />
-            <div class="manga-card-content">
+            <img [src]="manga.image" alt="{{ manga.name }}" class="w-full h-48 object-cover rounded-lg mb-4" />
+            <div>
               <div *ngFor="let chapter of getLastChapters(manga)">
-                <div [routerLink]="['/manga/view', manga.slug, 'chapter', chapter.slug]" class="text-red-600 hover:underline">
+                <div [routerLink]="['/manga/view', manga.slug, 'chapter', chapter.slug]" class="text-red-600 dark:text-red-400 hover:underline">
                   {{ chapter.name }} ajouté : {{ chapter.updated_at | date }}
                 </div>
               </div>
             </div>
-          </div>
         </div>
       </div>
     </section>
-
-    <!-- Boutons de navigation pour la pagination -->
-    <div class="navigation-buttons flex justify-center mt-8 space-x-4">
-      <button (click)="previousPage()" [disabled]="!hasPreviousPage()" class="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400 disabled:opacity-50 disabled:cursor-not-allowed">Page Précédent</button>
-      <button (click)="nextPage()" [disabled]="!hasNextPage()" class="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400 disabled:opacity-50 disabled:cursor-not-allowed">Page Suivant</button>
+    <div class="flex justify-center mt-8 space-x-4">
+      <button (click)="previousPage()" [disabled]="!hasPreviousPage()" class="px-4 py-2 bg-gray-300 dark:bg-gray-700 dark:text-white text-gray-700 rounded hover:bg-gray-400 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed">Page Précédent</button>
+      <button (click)="nextPage()" [disabled]="!hasNextPage()" class="px-4 py-2 bg-gray-300 dark:bg-gray-700 dark:text-white text-gray-700 rounded hover:bg-gray-400 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed">Page Suivant</button>
     </div>
   </div>
 </div>

@@ -1,46 +1,47 @@
-<div class="mangas-page-container flex flex-col items-center min-h-screen overflow-x-hidden p-6">
-  <div class="content-wrapper flex flex-col lg:flex-row gap-4">
-    <div class="manga-card w-full rounded-lg shadow-lg">
-      <mat-card class="manga-card-content">
-        <mat-card-header>
-          <mat-card-title>{{ manga?.name }}</mat-card-title>
-        </mat-card-header>
-        <div class="card-content-container flex gap-4 p-6">
-          <div class="large flex-none w-1/3 max-w-sm">
-            <img mat-card-image [src]="manga?.image" alt="{{ manga?.name }}" class="manga-image" />
+<div class="flex flex-col items-center min-h-screen overflow-x-hidden p-6 dark:bg-gray-900 dark:text-white">
+  <div class="flex flex-col lg:flex-row gap-4">
+    <div class="w-full rounded-lg shadow-lg">
+      <div class="bg-white dark:bg-gray-800 dark:text-white rounded-lg shadow-lg w-full">
+        <div class="p-4">
+          <h2 class="text-xl font-bold">{{ manga?.name }}</h2>
+        </div>
+        <div class="flex gap-4 p-6">
+          <div class="flex-none">
+            <img [src]="manga?.image" alt="{{ manga?.name }}" class="w-full h-auto rounded-lg" />
           </div>
-          <div class="right flex flex-col flex-1 gap-2">
-            <h2>Manga Different Names:</h2>
+          <div class="flex flex-col flex-1 gap-2">
+            <h2 class="text-lg font-semibold">Manga Different Names:</h2>
             <p>{{ manga?.variousName }}</p>
-            <h2>Manga Description:</h2>
+            <h2 class="text-lg font-semibold">Manga Description:</h2>
             <p>{{ manga?.description }}</p>
-            <mat-card-actions class="mt-auto flex justify-end">
-              <button class="bg-zinc-200 text-black px-4 py-2 rounded hover:bg-zinc-300"
-              (click)="addtoFavoris(manga?.slug)">
-                <mat-icon>bookmark</mat-icon>
+            <div class="mt-auto flex justify-end">
+              <button class="bg-gray-200 dark:bg-gray-700 dark:text-white text-black px-4 py-2 rounded hover:bg-gray-300 dark:hover:bg-gray-600" (click)="addtoFavoris(manga?.slug)">
+                <span class="material-icons">bookmark</span>
               </button>
-            </mat-card-actions>
+            </div>
           </div>
         </div>
-      </mat-card>
+      </div>
     </div>
   </div>
-  <div class="table-wrapper w-full max-w-4xl mt-6 p-5">
-    <table mat-table [dataSource]="dataSource">
-      <ng-container matColumnDef="No">
-        <th mat-header-cell *matHeaderCellDef> No. </th>
-        <td mat-cell *matCellDef="let element; let i = index"> {{i + 1}} </td>
-      </ng-container>
-      <ng-container matColumnDef="chapter">
-        <th mat-header-cell *matHeaderCellDef> Chapter </th>
-        <td mat-cell *matCellDef="let chapter"> {{chapter.name}} </td>
-      </ng-container>
-      <ng-container matColumnDef="updated_at">
-        <th mat-header-cell *matHeaderCellDef> Updated at </th>
-        <td mat-cell *matCellDef="let chapter"> {{chapter.updated_at | date}} </td>
-      </ng-container>
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/manga/view', manga?.slug, 'chapter', row.slug]" class="hover:cursor-pointer"></tr>
-    </table>
+  <div class="w-full max-w-4xl mt-6 p-5">
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-white dark:bg-gray-800">
+        <thead>
+          <tr>
+            <th class="px-4 py-2 border-b dark:border-gray-700 text-center">No</th>
+            <th class="px-4 py-2 border-b dark:border-gray-700 text-center">Chapter</th>
+            <th class="px-4 py-2 border-b dark:border-gray-700 text-center">Updated At</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let chapter of dataSource.data; let i = index" [routerLink]="['/manga/view', manga?.slug, 'chapter', chapter.slug]" class="hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">
+            <td class="px-4 py-2 border-b dark:border-gray-700 text-center">{{ i + 1 }}</td>
+            <td class="px-4 py-2 border-b dark:border-gray-700 text-center">{{ chapter.name }}</td>
+            <td class="px-4 py-2 border-b dark:border-gray-700 text-center">{{ chapter.updated_at | date }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

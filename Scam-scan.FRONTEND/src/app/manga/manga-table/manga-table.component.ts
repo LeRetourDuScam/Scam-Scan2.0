@@ -1,10 +1,6 @@
-import { Component, Input, OnInit, Renderer2 } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
 import { MangaService } from '../../shared/services/manga.service';
 import { Manga } from '../../shared/models/manga.model';
-import { MatDialog } from '@angular/material/dialog';
-import { DialogCreateMangaComponent } from '../../dialog/dialog-create-manga/dialog-create-manga.component';
-import { Chapter } from '../../shared/models/chapter.model';
 import { SnackbarService } from '../../shared/services/snackbar.service';
 import { mangaParams } from 'src/app/shared/params/manga-params.const';
 import { MangaParams } from 'src/app/shared/params/manga-params';
@@ -26,7 +22,6 @@ export class MangaTableComponent implements OnInit {
 
   constructor(
     private mangaService: MangaService,
-    private dialog: MatDialog,
     private snackbarService: SnackbarService,
   ) {
   }
@@ -43,32 +38,7 @@ export class MangaTableComponent implements OnInit {
     });
   }
 
-  createManga() {
-    const dialogRef = this.dialog.open(DialogCreateMangaComponent, {
-      data: {
-        name: '',
-        slug: '',
-        description: '',
-        image: '',
-        chapters: new Chapter(),
-        updated_at: new Date(),
-        created_at: new Date(),
-      }
-    });
-    dialogRef.afterClosed().subscribe((createdData: any) => {
-      if (createdData) {
-        this.mangaService.createManga(createdData).subscribe({
-          next: () => {
-            this.snackbarService.showSuccess();
-            this.refreshManga();
-          },
-          error: () => {
-            this.snackbarService.showError();
-          }
-        });
-      }
-    });
-  }
+
 
   getLastChapters(manga: Manga) {
     return manga.chapters.slice(-3);
