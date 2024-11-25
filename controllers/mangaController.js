@@ -69,7 +69,6 @@ const setFilters = (query, filters) => {
     if (filters.type) {
         query = query.where('type').equals(filters.type);
     }
-    console.log(filters)
     return query;
 };
 

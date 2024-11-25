@@ -18,11 +18,12 @@ import { SearchBarComponent } from './others/search-bar/search-bar.component';
 import { RegisterComponent } from './user/register/register.component';
 import { LoginComponent } from './user/login/login.component';
 import { ProfilComponent } from './user/profil/profil.component';
+import { BookmarkMangaComponent } from './manga/bookmark-manga/bookmark-manga.component';
 
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
-import { BookmarkMangaComponent } from './manga/bookmark-manga/bookmark-manga.component';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,9 @@ import { BookmarkMangaComponent } from './manga/bookmark-manga/bookmark-manga.co
     AppRoutingModule,
     MatSnackBarModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule
     ],
   providers: [],
   bootstrap: [AppComponent]

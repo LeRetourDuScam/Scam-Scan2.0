@@ -4,6 +4,11 @@ import { Manga } from '../../shared/models/manga.model';
 import { SnackbarService } from '../../shared/services/snackbar.service';
 import { mangaParams } from 'src/app/shared/params/manga-params.const';
 import { MangaParams } from 'src/app/shared/params/manga-params';
+import { FormControl } from '@angular/forms';
+import { Status } from 'src/app/shared/enums/status.enum';
+import { Types } from 'src/app/shared/enums/types.enum';
+import { Genres } from 'src/app/shared/enums/genres.enum';
+import { Languages } from 'src/app/shared/enums/languages.enum';
 
 @Component({
   selector: 'app-manga-table',
@@ -16,15 +21,29 @@ export class MangaTableComponent implements OnInit {
   public MangaParams!: MangaParams;
   public mangas: Manga[] = [];
 
-
   countMangas: number = 0;
   countPage: number = 0;
+  isExpanded = false;
+
+  public authorControl = new FormControl();
+  public ratingControl = new FormControl();
+  public publicationYearControl = new FormControl();
+
+
+  public statusControl = new FormControl();
+  public typeControl = new FormControl();
+  public genreControl = new FormControl();
+  public languageControl = new FormControl();
+
+  StatusEnum = Object.values(Status);
+  TypesEnum = Object.values(Types);
+  GenresEnum = Object.values(Genres);
+  LanguagesEnum = Object.values(Languages);
 
   constructor(
     private mangaService: MangaService,
     private snackbarService: SnackbarService,
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     this.MangaParams = { ...mangaParams };
@@ -37,8 +56,6 @@ export class MangaTableComponent implements OnInit {
       this.countMangas = res.count;
     });
   }
-
-
 
   getLastChapters(manga: Manga) {
     return manga.chapters.slice(-3);
@@ -67,6 +84,26 @@ export class MangaTableComponent implements OnInit {
     }
   }
 
+  handleChange(event: any, param: keyof MangaParams, control: FormControl) {
+    if (event.target.value) {
+      const value = event.target.value.trim();
+      if (value) {
+        (this.MangaParams as any)[param] = value;
+        this.refreshManga();
+      }
+    } else {
+      this.cleanParam(param, control);
+    }
+  }
+
+  cleanParam(param: keyof MangaParams, control: FormControl) {
+    control.reset();
+    (this.MangaParams as any)[param] = '';
+    this.refreshManga();
+  }
+  toggleExpandable() {
+    this.isExpanded = !this.isExpanded;
+  }
   refreshManga() {
     this.MangaParams.pageNumber = 1;
     this.GetAllMangas();

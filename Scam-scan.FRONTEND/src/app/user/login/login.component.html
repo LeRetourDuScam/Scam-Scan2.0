@@ -3,7 +3,7 @@
     <h2 class="text-3xl font-bold text-center mb-6">Connexion</h2>
     <form [formGroup]="loginForm" (ngSubmit)="login()" class="space-y-6">
       <div>
-        <label for="username" class="block text-sm font-medium">Nom d'utilisateur</label>
+        <label for="username" class="block text-sm font-medium">Username</label>
         <input
           type="text"
           id="username"
@@ -13,7 +13,7 @@
         />
       </div>
       <div>
-        <label for="password" class="block text-sm font-medium">Mot de passe</label>
+        <label for="password" class="block text-sm font-medium">Password</label>
         <input
           type="password"
           id="password"
@@ -27,7 +27,7 @@
         [disabled]="loginForm.invalid"
         class="w-full bg-blue-600 dark:bg-blue-700 text-white py-3 rounded hover:bg-blue-500 dark:hover:bg-blue-600 disabled:bg-gray-400"
       >
-        Se connecter
+        Connect
       </button>
     </form>
   </div>

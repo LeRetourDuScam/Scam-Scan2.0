@@ -3,7 +3,6 @@
     <div class="flex gap-4 items-center">
       <div routerLink="" class="text-2xl font-bold hover:cursor-pointer">MangaWorld</div>
       <nav class="hidden md:flex space-x-4">
-        <a routerLink="" class="hover:text-gray-300">Home</a>
         <a routerLink="/manga" class="hover:text-gray-300">Browse</a>
         <a routerLink="/bookmark" class="hover:text-gray-300 material-icons" *ngIf="this.authService.isLoggedIn()">bookmark</a>
       </nav>

@@ -10,10 +10,21 @@
             <img [src]="manga?.image" alt="{{ manga?.name }}" class="w-full h-auto rounded-lg" />
           </div>
           <div class="flex flex-col flex-1 gap-2">
-            <h2 class="text-lg font-semibold">Manga Different Names:</h2>
+            <h2 class="text-lg font-semibold">Author:</h2>
+            <p>{{ manga?.author }}</p>
+
+            <h2 class="text-lg font-semibold">Info:</h2>
+            <p>Type : {{ manga?.type }} </p> 
+            <p>Status : {{ manga?.status }} </p>
+            <p>Publication Year : {{ manga?.publicationYear }} </p>
+            <p>Rating : {{ manga?.rating }} / 5</p>
+
+            <h2 class="text-lg font-semibold">Different Names:</h2>
             <p>{{ manga?.variousName }}</p>
-            <h2 class="text-lg font-semibold">Manga Description:</h2>
+            
+            <h2 class="text-lg font-semibold">Description:</h2>
             <p>{{ manga?.description }}</p>
+
             <div class="mt-auto flex justify-end">
               <button class="bg-gray-200 dark:bg-gray-700 dark:text-white text-black px-4 py-2 rounded hover:bg-gray-300 dark:hover:bg-gray-600" (click)="IsBookmarked(manga?.slug)" *ngIf="this.authService.isLoggedIn()">
                 <span class="material-icons">bookmark</span>
