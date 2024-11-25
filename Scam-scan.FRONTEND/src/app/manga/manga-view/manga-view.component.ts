@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { MangaService } from '../../shared/services/manga.service';
 import { Manga } from '../../shared/models/manga.model';
 import { MatTableDataSource } from '@angular/material/table';
@@ -24,13 +24,22 @@ export class MangaViewComponent implements OnInit {
               private mangaService: MangaService,
               public authService: AuthService,
               private user: UserService,
-              private snackbarService:SnackbarService) {}
+              private snackbarService:SnackbarService,
+              private router: Router) {}
 
   ngOnInit(): void {
     this.slug = this.route.snapshot.paramMap.get('slug');
     if (this.slug) {
       this.loadManga(this.slug);
     }
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.slug = this.route.snapshot.paramMap.get('slug');
+        if (this.slug) {
+          this.loadManga(this.slug);
+        }
+      }
+    });
   }
 
   loadManga(slug: any): void {

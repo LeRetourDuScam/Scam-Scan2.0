@@ -1,6 +1,5 @@
 import { HttpClient, HttpStatusCode } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from '../models/user.model';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
