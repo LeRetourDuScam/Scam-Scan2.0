@@ -1,6 +1,5 @@
 const Manga = require('../models/Manga');
 
-// CREATE : Ajouter un nouveau manga
 exports.createManga = async (req, res) => {
     const newManga = new Manga(req.body);
     try {
@@ -11,20 +10,25 @@ exports.createManga = async (req, res) => {
     }
 };
 
-// READ : Obtenir tous les mangas avec pagination
 exports.getMangas = async (req, res) => {
     try {
-        const page = parseInt(req.query.pageNumber);   
-        const limit = parseInt(req.query.pageSize); 
+        const page = parseInt(req.query.pageNumber) || 1;
+        const limit = parseInt(req.query.pageSize) || 9;
+        const skip = (page - 1) * limit;
 
-        const skip = (page - 1) * limit; // Calcule le nombre d'éléments à sauter
+        let query = Manga.find();
 
-        // Trouver les mangas avec pagination
-        const data = await Manga.find().skip(skip).limit(limit);
-        const totalMangas = await Manga.countDocuments(); // Compte le total des mangas
+        // Apply filters
+        query = setFilters(query, req.query);
+
+        // Clone the query for counting
+        const countQuery = query.clone();
+
+        const totalMangas = await countQuery.countDocuments();
+        const data = await query.skip(skip).limit(limit);
 
         res.json({
-            pageNumber:page,
+            pageNumber: page,
             count: totalMangas,
             data
         });
@@ -32,7 +36,43 @@ exports.getMangas = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
-// SEARCH : Rechercher des mangas par nom
+
+const setFilters = (query, filters) => {
+    if (filters.variousName) {
+        query = query.where('variousName').regex(new RegExp(filters.variousName, 'i'));
+    }
+    if (filters.slug) {
+        query = query.where('slug').equals(filters.slug);
+    }
+    if (filters.genre) {
+        const genres = filters.genre.split(',');
+        query = query.where('genre').in(genres);
+    }
+    if (filters.status) {
+        query = query.where('status').equals(filters.status);
+    }
+    if (filters.author) {
+        query = query.where('author').regex(new RegExp(filters.author, 'i'));
+    }
+    if (filters.popularity) {
+        query = query.where('popularity').equals(filters.popularity);
+    }
+    if (filters.publicationYear) {
+        query = query.where('publicationYear').equals(filters.publicationYear);
+    }
+    if (filters.language) {
+        query = query.where('language').equals(filters.language);
+    }
+    if (filters.rating) {
+        query = query.where('rating').gte(filters.rating);
+    }
+    if (filters.type) {
+        query = query.where('type').equals(filters.type);
+    }
+    console.log(filters)
+    return query;
+};
+
 exports.searchMangas = async (req, res) => {
     const searchTerm = req.query.q;
     try {
@@ -47,7 +87,6 @@ exports.searchMangas = async (req, res) => {
 };
 
 
-// READ : Obtenir un manga par son slug
 exports.getMangaBySlug = async (req, res) => {
     try {
         const manga = await Manga.findOne({ slug: req.params.slug });
@@ -60,7 +99,6 @@ exports.getMangaBySlug = async (req, res) => {
     }
 };
 
-// UPDATE : Mettre à jour un manga par le slug
 exports.updateMangaBySlug = async (req, res) => {
     try {
         const updatedManga = await Manga.findOneAndUpdate(
@@ -77,7 +115,6 @@ exports.updateMangaBySlug = async (req, res) => {
     }
 };
 
-// DELETE : Supprimer un manga par le slug
 exports.deleteMangaBySlug = async (req, res) => {
     try {
         const deletedManga = await Manga.findOneAndDelete({ slug: req.params.slug });

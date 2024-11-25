@@ -2,9 +2,18 @@ const mongoose = require('mongoose');
 
 const MangaSchema = new mongoose.Schema({
     name: String,
+    variousName: String,
     slug: String,
     description: String,
     image: String,
+    genre: String,
+    status: String,
+    author: String,
+    popularity: Number,
+    publicationYear: Number,
+    language: String,
+    rating: Number,
+    type: String,
     chapters: [
         {
             name: String,
@@ -17,7 +26,6 @@ const MangaSchema = new mongoose.Schema({
     ],
     updated_at: Date,
     created_at: Date,
-    variousName: String
 });
 
 module.exports = mongoose.model('Manga', MangaSchema, 'mangas');
