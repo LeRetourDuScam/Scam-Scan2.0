@@ -55,4 +55,42 @@
       </table>
     </div>
   </div>
+  
+  <div class="w-full max-w-4xl mt-6 p-5 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+
+    <h3 class="text-xl font-semibold mb-4">Commentaires</h3>
+
+    <form [formGroup]="commentForm" (ngSubmit)="addComment(manga?.slug)" class="flex flex-col gap-4" *ngIf="this.authService.isLoggedIn()">
+      <textarea formControlName="content" placeholder="Ajouter un commentaire" class="w-full p-2 border rounded-lg dark:bg-gray-700 dark:text-white"></textarea>
+      <button type="submit" [disabled]="commentForm.invalid" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 disabled:opacity-50">Envoyer</button>
+    </form>
+
+    <div *ngFor="let comment of comments" class="mt-4 p-4 border-t dark:border-gray-700">
+      <p class="mb-2">User : {{ comment.userId.username }}</p>
+      <p class="mb-2">{{ comment.content }}</p>
+      <small class="text-gray-500 dark:text-gray-400">{{ comment.createdAt | date }}</small>
+    
+      <div *ngFor="let reply of comment.replies" class="mt-2 ml-4 p-2 border-l dark:border-gray-700">
+        <p class="mb-2">User : {{ reply.userId }}</p>
+        <p class="mb-2">{{ reply.content }}</p>
+        <small class="text-gray-500 dark:text-gray-400">{{ reply.createdAt | date }}</small>
+    
+        <div *ngFor="let subReply of reply.replies" class="mt-2 ml-4 p-2 border-l dark:border-gray-700">
+          <p class="mb-2">User : {{ subReply.userId }}</p>
+          <p class="mb-2">{{ subReply.content }}</p>
+          <small class="text-gray-500 dark:text-gray-400">{{ subReply.createdAt | date }}</small>
+        </div>
+    
+        <form [formGroup]="replyForm" (ngSubmit)="addReply(comment._id, reply._id)" class="flex flex-col gap-2 mt-2">
+          <textarea formControlName="content" placeholder="Reply to this comment" class="w-full p-2 border rounded-lg dark:bg-gray-700 dark:text-white"></textarea>
+          <button type="submit" [disabled]="replyForm.invalid" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:opacity-50">Reply</button>
+        </form>
+      </div>
+    
+      <form [formGroup]="replyForm" (ngSubmit)="addReply(comment._id, '')" class="flex flex-col gap-2 mt-2">
+        <textarea formControlName="content" placeholder="Reply to this comment" class="w-full p-2 border rounded-lg dark:bg-gray-700 dark:text-white"></textarea>
+        <button type="submit" [disabled]="replyForm.invalid" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:opacity-50">Reply</button>
+      </form>
+    </div>
+    
 </div>
