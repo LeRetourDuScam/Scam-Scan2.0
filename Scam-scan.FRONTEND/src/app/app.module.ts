@@ -24,6 +24,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { CommentComponent } from './others/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { MatInputModule } from '@angular/material/input';
     ProfilComponent,
     HomepageComponent,
     BookmarkMangaComponent,
+    CommentComponent,
     
   ],
   imports: [

@@ -4,8 +4,7 @@ const router = express.Router();
 const commentController = require('../controllers/commentController');
 
 router.post('/', commentController.postComment);
+router.post('/reply', commentController.postReply);
 router.get('/:mangaSlug', commentController.getComments);
-router.post('/:commentId/reply', commentController.replyToComment);
-router.post('/:commentId/:replayId/reply', commentController.replyToReply);
 
 module.exports = router;

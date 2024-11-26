@@ -4,11 +4,13 @@ import { MangaService } from '../../shared/services/manga.service';
 import { Manga } from '../../shared/models/manga.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { Chapter } from 'src/app/shared/models/chapter.model';
+import { Comment } from 'src/app/shared/models/comment.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 import { CommentService } from 'src/app/shared/services/comment.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AppComponent } from 'src/app/app.component';
 @Component({
   selector: 'app-manga-view',
   templateUrl: './manga-view.component.html',
@@ -22,7 +24,7 @@ export class MangaViewComponent implements OnInit {
   displayedColumns: string[] = ['No', 'chapter', 'updated_at'];
   dataSource: MatTableDataSource<Chapter> = new MatTableDataSource<Chapter>([]);
 
-  comments: any[] = [];
+  comments: Comment[] = [];
   commentForm: FormGroup;
   replyForm: FormGroup;
   constructor(private route: ActivatedRoute,
@@ -58,6 +60,36 @@ export class MangaViewComponent implements OnInit {
     });
 
   }
+  loadComments(mangaSlug:any): void {
+    this.commentService.getComments(mangaSlug).subscribe(comments => {
+      this.comments = this.organizeComments(comments);
+    });
+  }
+  organizeComments(comments: any[]): any[] {
+    const commentMap = new Map();
+  
+    // Créer une map de tous les commentaires
+    comments.forEach((comment) =>
+      commentMap.set(comment._id, { ...comment, replies: [] })
+    );
+  
+    const rootComments: any[] = [];
+  
+    comments.forEach((comment) => {
+      if (comment.parentId) {
+        // Ajouter les commentaires enfants à leur parent
+        const parent = commentMap.get(comment.parentId);
+        if (parent) {
+          parent.replies.push(commentMap.get(comment._id));
+        }
+      } else {
+        // Ajouter les commentaires sans parent dans la racine
+        rootComments.push(commentMap.get(comment._id));
+      }
+    });
+    console.log(rootComments)
+    return rootComments;
+  }
 
   loadManga(slug: any): void {
     this.mangaService.getMangaBySlug(slug).subscribe(data => {
@@ -89,11 +121,7 @@ export class MangaViewComponent implements OnInit {
        })
     }
   }
-  loadComments(mangaSlug:any): void {
-    this.commentService.getComments(mangaSlug).subscribe(comments => {
-      this.comments = comments;
-    });
-  }
+
 
   addComment(mangaSlug:any): void {
     if (this.commentForm.valid) {
@@ -109,26 +137,16 @@ export class MangaViewComponent implements OnInit {
       });
     }
   }
-  addReply(commentId: string, replyId: string): void {
+  addReply(parentId: string): void {
     if (this.replyForm.valid) {
       const reply = {
+        parentId:parentId,
         content: this.replyForm.value.content,
         userId: this.authService.getUsernameFromToken(),
       };
-  
-      if (replyId) {
-        // Répondre à une sous-réponse
-        this.commentService.replyToReply(commentId, replyId, reply).subscribe(() => {
-          this.loadComments(this.route.snapshot.paramMap.get('slug')!);
-          this.replyForm.reset();
-        });
-      } else {
-        // Répondre à un commentaire principal
-        this.commentService.replyToComment(commentId, reply).subscribe(() => {
-          this.loadComments(this.route.snapshot.paramMap.get('slug')!);
-          this.replyForm.reset();
-        });
-      }
+      this.commentService.replyToComment(reply).subscribe(()=>{
+        this.replyForm.reset();
+      })
     }
   }
   
