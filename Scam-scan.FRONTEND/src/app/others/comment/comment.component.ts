@@ -35,7 +35,7 @@ export class CommentComponent {
       const reply = {
         parentId: this.comment._id,
         content: this.replyForm.value.content,
-        userId: this.authService.getUsernameFromToken(),
+        username: this.authService.getUsernameFromToken(),
         mangaSlug: this.mangaSlug,
       };
 

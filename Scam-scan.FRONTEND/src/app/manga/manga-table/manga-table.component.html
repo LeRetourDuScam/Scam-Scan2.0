@@ -33,23 +33,6 @@
         </button>
       </div>
 
-      <div class="w-2/3 flex items-center pt-3">
-        <input 
-          type="text" 
-          placeholder="Publication Year" 
-          (keyup)="handleChange($event,'publicationYear',publicationYearControl)" 
-          [formControl]="publicationYearControl" 
-          class="flex-grow border border-gray-300 rounded-lg shadow-sm px-4 py-2 bg-white text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:placeholder-gray-500"
-        />
-        <button 
-          aria-label="Clear" 
-          (click)="cleanParam('publicationYear',publicationYearControl)" 
-          *ngIf="this.MangaParams.publicationYear" 
-          class="bg-red-500 text-white rounded-lg px-4 py-2 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-600"
-        >
-          Clear
-        </button>
-      </div>
 
       <div class="w-2/3 flex items-center pt-3">
         <input 
@@ -76,6 +59,7 @@
           (change)="handleChange($event,'status',statusControl)" 
           class="flex-grow border border-gray-300 rounded-lg shadow-sm px-4 py-2 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-600 dark:bg-gray-700 dark:text-white dark:border-gray-600"
         >
+         <option disabled>Select Status</option>
           <option *ngFor="let status of StatusEnum" [value]="status">{{ status }}</option>
         </select>
         <button 
@@ -90,10 +74,31 @@
 
       <div class="w-2/3 flex items-center pt-3">
         <select 
+        id="years-select"
+          [formControl]="publicationYearControl" 
+          (change)="handleChange($event,'publicationYear',publicationYearControl)" 
+          class="flex-grow border border-gray-300 rounded-lg shadow-sm px-4 py-2 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-600 dark:bg-gray-700 dark:text-white dark:border-gray-600"
+        >
+        <option disabled>Select Year</option>
+          <option *ngFor="let publicationYear of years" [value]="publicationYear">{{ publicationYear }}</option>
+        </select>
+        <button 
+          aria-label="Clear" 
+          (click)="cleanParam('publicationYear',publicationYearControl)" 
+          *ngIf="this.MangaParams.publicationYear" 
+          class="bg-red-500 text-white rounded-lg px-4 py-2 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-600"
+        >
+          Clear
+        </button>
+      </div>
+
+      <div class="w-2/3 flex items-center pt-3">
+        <select 
           [formControl]="typeControl" 
           (change)="handleChange($event,'type',typeControl)" 
           class="flex-grow border border-gray-300 rounded-lg shadow-sm px-4 py-2 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-600 dark:bg-gray-700 dark:text-white dark:border-gray-600"
         >
+        <option disabled>Select Type</option>
           <option *ngFor="let type of TypesEnum" [value]="type">{{ type }}</option>
         </select>
         <button 
@@ -112,6 +117,7 @@
           (change)="handleChange($event,'genre',genreControl)" 
           class="flex-grow border border-gray-300 rounded-lg shadow-sm px-4 py-2 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-600 dark:bg-gray-700 dark:text-white dark:border-gray-600"
         >
+        <option disabled>Select Genre</option>
           <option *ngFor="let genre of GenresEnum" [value]="genre">{{ genre }}</option>
         </select>
         <button 
@@ -130,6 +136,7 @@
           (change)="handleChange($event,'language',languageControl)" 
           class="flex-grow border border-gray-300 rounded-lg shadow-sm px-4 py-2 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-600 dark:bg-gray-700 dark:text-white dark:border-gray-600"
         >
+        <option disabled>Select Language</option>
           <option *ngFor="let language of LanguagesEnum" [value]="language">{{ language }}</option>
         </select>
         <button 

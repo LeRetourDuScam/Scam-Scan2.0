@@ -18,7 +18,7 @@ import { AppComponent } from 'src/app/app.component';
 })
 export class MangaViewComponent implements OnInit {
   slug: string | null = null;
-  userId: string | null = null;
+  username: string | null = null;
   FavoritesMangaList:string[] =[];
   public manga: Manga | undefined;
   displayedColumns: string[] = ['No', 'chapter', 'updated_at'];
@@ -99,19 +99,19 @@ export class MangaViewComponent implements OnInit {
   }
 
   addtoFavoris(mangaSlug: any): void {
-    this.userId = this.authService.getUsernameFromToken();
-    if (this.userId) {
-      this.user.AddToFavoris(mangaSlug, this.userId).subscribe(res => {
+    this.username = this.authService.getUsernameFromToken();
+    if (this.username) {
+      this.user.AddToFavoris(mangaSlug, this.username).subscribe(res => {
         this.snackbarService.addedBookmark();
       });
     }
   }
   IsBookmarked(mangaSlug:any):void{
-    this.userId = this.authService.getUsernameFromToken();
-    if (this.userId) {
-      this.user.GetFavoris(this.userId).subscribe(res=>{
+    this.username = this.authService.getUsernameFromToken();
+    if (this.username) {
+      this.user.GetFavoris(this.username).subscribe(res=>{
         if(res.includes(mangaSlug)){
-          this.user.deleteFavoris(this.userId,mangaSlug).subscribe(res => {
+          this.user.deleteFavoris(this.username,mangaSlug).subscribe(res => {
             this.snackbarService.deletedBookmark();
           });
         }
@@ -129,7 +129,7 @@ export class MangaViewComponent implements OnInit {
       const comment= {
          ...this.commentForm.value, 
          mangaSlug: mangaSlug , 
-         userId: this.authService.getUsernameFromToken()
+         username: this.authService.getUsernameFromToken()
       };
       this.commentService.addComment(comment).subscribe(() => {
         this.loadComments(mangaSlug);
@@ -142,7 +142,7 @@ export class MangaViewComponent implements OnInit {
       const reply = {
         parentId:parentId,
         content: this.replyForm.value.content,
-        userId: this.authService.getUsernameFromToken(),
+        username: this.authService.getUsernameFromToken(),
       };
       this.commentService.replyToComment(reply).subscribe(()=>{
         this.replyForm.reset();

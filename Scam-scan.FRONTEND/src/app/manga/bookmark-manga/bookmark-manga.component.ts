@@ -10,7 +10,7 @@ import { UserService } from 'src/app/shared/services/user.service';
   styleUrls: ['./bookmark-manga.component.scss']
 })
 export class BookmarkMangaComponent {
-    userId: string | null = null;
+    username: string | null = null;
     public mangas: Manga[] = [];
     public FavoritesMangaList: string[] = [];
   
@@ -34,9 +34,9 @@ export class BookmarkMangaComponent {
   }
   
     getAllFavorites(){
-      this.userId = this.authService.getUsernameFromToken();
-      if(this.userId){
-        this.user.GetFavoris(this.userId).subscribe(res=>{
+      this.username = this.authService.getUsernameFromToken();
+      if(this.username){
+        this.user.GetFavoris(this.username).subscribe(res=>{
           this.FavoritesMangaList = res;
           this.refreshManga();
         })

@@ -20,6 +20,7 @@ export class MangaTableComponent implements OnInit {
 
   public MangaParams!: MangaParams;
   public mangas: Manga[] = [];
+  public years: number[] = [];
 
   countMangas: number = 0;
   countPage: number = 0;
@@ -47,8 +48,10 @@ export class MangaTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.MangaParams = { ...mangaParams };
+    this.generateYears();
     this.refreshManga();
   }
+  
 
   GetAllMangas(): void {
     this.mangaService.getMangas(this.MangaParams).subscribe(res => {
@@ -101,9 +104,20 @@ export class MangaTableComponent implements OnInit {
     (this.MangaParams as any)[param] = '';
     this.refreshManga();
   }
+
   toggleExpandable() {
     this.isExpanded = !this.isExpanded;
   }
+
+  generateYears(): number[] {
+    const currentYear = new Date().getFullYear();
+    for (let year = currentYear; year >= 1930; year--) {
+      this.years.push(year);
+    }
+    return this.years;
+  }
+
+
   refreshManga() {
     this.MangaParams.pageNumber = 1;
     this.GetAllMangas();

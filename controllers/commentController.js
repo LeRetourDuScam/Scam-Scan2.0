@@ -15,7 +15,7 @@ exports.postComment = async (req, res) => {
     console.log(req.body)
     const comment = new Comment({
         mangaSlug: req.body.mangaSlug,
-        userId: req.body.userId,
+        username: req.body.username,
         content: req.body.content
     });
 
@@ -37,7 +37,7 @@ exports.postReply = async (req, res) => {
 
         const reply = new Comment({
             mangaSlug: parentComment.mangaSlug,
-            userId: req.body.userId,
+            username: req.body.username,
             content: req.body.content,
             parentId: req.body.parentId
         });

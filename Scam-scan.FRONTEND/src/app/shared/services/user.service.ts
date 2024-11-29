@@ -12,15 +12,15 @@ export class UserService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  AddToFavoris(mangaSlug: string, userId: string): Observable<HttpStatusCode> {
-    return this.http.post<HttpStatusCode>(`${this.apiUrl}/favoritesManga/${userId}`, 
+  AddToFavoris(mangaSlug: string, username: string): Observable<HttpStatusCode> {
+    return this.http.post<HttpStatusCode>(`${this.apiUrl}/favoritesManga/${username}`, 
       {manga:mangaSlug});
   }
 
-  deleteFavoris(userId:any,slug: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/favoritesManga/${userId}`,{body:{manga:slug}});
+  deleteFavoris(username:any,slug: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/favoritesManga/${username}`,{body:{manga:slug}});
   }
-  GetFavoris(userId: string): Observable<string[]> {
-    return this.http.get<string[]>(`${this.apiUrl}/favoritesManga/${userId}`);
+  GetFavoris(username: string): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/favoritesManga/${username}`);
   }
 }

@@ -42,7 +42,7 @@ export class AuthService {
     const token = this.getToken();
     if (token) {
       const decoded: any = jwtDecode(token);
-      return decoded.userId; 
+      return decoded.username; 
     }
     return null;
   }

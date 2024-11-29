@@ -21,7 +21,7 @@ exports.loginUser = async (req, res) => {
         if (!user || !(await bcrypt.compare(password, user.password))) {
             return res.status(400).json({ message: 'Identifiants incorrects' });
         }
-        const token = jwt.sign({ userId: user._id, role: user.role }, 'votre_secret_key', { expiresIn: '1h' });
+        const token = jwt.sign({ username: user.username, role: user.role }, 'votre_secret_key', { expiresIn: '1h' });
         res.json({ token });
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -30,7 +30,7 @@ exports.loginUser = async (req, res) => {
 
 exports.getUserFavoritesManga = async (req, res) => {
     try {
-        const user = await User.findOne({ _id: req.params.userId });
+        const user = await User.findOne({ username: req.params.username });
         if (!user) {
             return res.status(404).json({ message: 'Utilisateur non trouvé' });
         }
@@ -42,7 +42,7 @@ exports.getUserFavoritesManga = async (req, res) => {
 
 exports.addFavoritesManga = async (req, res) => {
     try {
-        const user = await User.findOne({ _id: req.params.userId });
+        const user = await User.findOne({ username: req.params.username });
         if (!user) {
             return res.status(404).json({ message: 'Utilisateur non trouvé' });
         }
@@ -56,7 +56,7 @@ exports.addFavoritesManga = async (req, res) => {
 
 exports.deleteFavoritesManga = async (req, res) => {
     try {
-        const user = await User.findOne({ _id: req.params.userId });
+        const user = await User.findOne({ username: req.params.username });
         if (!user) {
             return res.status(404).json({ message: 'Utilisateur non trouvé' });
         }
