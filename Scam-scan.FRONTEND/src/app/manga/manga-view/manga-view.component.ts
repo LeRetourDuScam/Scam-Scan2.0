@@ -87,7 +87,6 @@ export class MangaViewComponent implements OnInit {
         rootComments.push(commentMap.get(comment._id));
       }
     });
-    console.log(rootComments)
     return rootComments;
   }
 
@@ -125,7 +124,6 @@ export class MangaViewComponent implements OnInit {
 
   addComment(mangaSlug:any): void {
     if (this.commentForm.valid) {
-      console.log( this.authService.getUsernameFromToken())
       const comment= {
          ...this.commentForm.value, 
          mangaSlug: mangaSlug , 

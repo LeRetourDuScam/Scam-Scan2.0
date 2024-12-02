@@ -20,10 +20,7 @@ export class ContactComponent {
 
   onSubmit() {
     if (this.contactForm.valid) {
-      console.log('Message envoyé :', this.contactForm.value);
-      // Code pour envoyer les données au backend
     } else {
-      console.log('Formulaire invalide');
     }
   }
 }
