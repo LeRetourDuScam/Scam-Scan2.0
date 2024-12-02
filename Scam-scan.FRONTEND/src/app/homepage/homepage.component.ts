@@ -31,6 +31,7 @@ export class HomepageComponent implements OnInit{
   }
 
   GetAllMangas(): void {
+    this.MangaParams.orderBy='updated_at';
     this.mangaService.getMangas(this.MangaParams).subscribe(res => {
       this.mangas = res.data;
       this.countMangas = res.count;

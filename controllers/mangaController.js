@@ -14,9 +14,12 @@ exports.getMangas = async (req, res) => {
     try {
         const page = parseInt(req.query.pageNumber) || 1;
         const limit = parseInt(req.query.pageSize) || 9;
+        const sortBy = req.query.orderBy || 'updated_at';
+        const sortOrder = req.query.sortOrder === 'asc' ? 1 : -1;
         const skip = (page - 1) * limit;
 
         let query = Manga.find();
+        query = query.sort({ [sortBy]: sortOrder });
 
         // Apply filters
         query = setFilters(query, req.query);
@@ -77,7 +80,7 @@ exports.searchMangas = async (req, res) => {
     try {
         const mangas = await Manga.find({
             name: { $regex: searchTerm, $options: 'i' } // Recherche insensible à la casse
-        }).limit(10); // Limite les résultats de recherche à 10 mangas
+        }).limit(10);
         
         res.json(mangas);
     } catch (error) {

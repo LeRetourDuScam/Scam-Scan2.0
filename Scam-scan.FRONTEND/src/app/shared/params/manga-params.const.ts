@@ -11,4 +11,5 @@ export const mangaParams = {
     language: '',
     rating: 0,
     type: '',
+    orderBy: '',
 };

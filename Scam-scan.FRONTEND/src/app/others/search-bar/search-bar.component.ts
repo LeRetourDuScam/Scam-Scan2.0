@@ -47,7 +47,7 @@ export class SearchBarComponent implements OnInit {
   }
 
   onSearch(term: string): void {
-    if (term.length >= 3) {
+    if (term.length >= 1) {
       this.mangaService.searchMangas(term).subscribe((data: any) => {
         this.filteredMangas = data;
       });

@@ -9,8 +9,9 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 import { CommentService } from 'src/app/shared/services/comment.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AppComponent } from 'src/app/app.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ViewService } from 'src/app/shared/services/view.service';
+import { View } from 'src/app/shared/models/views.model';
 @Component({
   selector: 'app-manga-view',
   templateUrl: './manga-view.component.html',
@@ -19,11 +20,12 @@ import { AppComponent } from 'src/app/app.component';
 export class MangaViewComponent implements OnInit {
   slug: string | null = null;
   username: string | null = null;
+
   FavoritesMangaList:string[] =[];
   public manga: Manga | undefined;
-  displayedColumns: string[] = ['No', 'chapter', 'updated_at'];
   dataSource: MatTableDataSource<Chapter> = new MatTableDataSource<Chapter>([]);
-
+ 
+  views: View[] = [];
   comments: Comment[] = [];
   commentForm: FormGroup;
   replyForm: FormGroup;
@@ -34,7 +36,8 @@ export class MangaViewComponent implements OnInit {
               private snackbarService:SnackbarService,
               private router: Router,
               private commentService:CommentService,
-              private fb: FormBuilder,) {
+              private fb: FormBuilder,
+              private viewService:ViewService) {
 
     this.commentForm = this.fb.group({
         content: ['',Validators.required]
@@ -65,34 +68,16 @@ export class MangaViewComponent implements OnInit {
       this.comments = this.organizeComments(comments);
     });
   }
-  organizeComments(comments: any[]): any[] {
-    const commentMap = new Map();
-  
-    // Créer une map de tous les commentaires
-    comments.forEach((comment) =>
-      commentMap.set(comment._id, { ...comment, replies: [] })
-    );
-  
-    const rootComments: any[] = [];
-  
-    comments.forEach((comment) => {
-      if (comment.parentId) {
-        // Ajouter les commentaires enfants à leur parent
-        const parent = commentMap.get(comment.parentId);
-        if (parent) {
-          parent.replies.push(commentMap.get(comment._id));
-        }
-      } else {
-        // Ajouter les commentaires sans parent dans la racine
-        rootComments.push(commentMap.get(comment._id));
-      }
-    });
-    return rootComments;
-  }
+ 
 
   loadManga(slug: any): void {
     this.mangaService.getMangaBySlug(slug).subscribe(data => {
       this.manga = data;
+      data.chapters.forEach(chapter => {
+        this.viewService.getView(chapter.slug).subscribe(viewData => {
+          chapter.views = viewData.views;
+        });
+      });
       this.dataSource = new MatTableDataSource<Chapter>(data.chapters);
     });
   }
@@ -120,7 +105,11 @@ export class MangaViewComponent implements OnInit {
        })
     }
   }
-
+  getChapterView(Slug:string){
+    this.viewService.getView(Slug).subscribe((data)=>{
+      this.views
+    })
+  }
 
   addComment(mangaSlug:any): void {
     if (this.commentForm.valid) {
@@ -147,6 +136,29 @@ export class MangaViewComponent implements OnInit {
       })
     }
   }
+
+  organizeComments(comments: any[]): any[] {
+    const commentMap = new Map();
   
+    // Créer une map de tous les commentaires
+    comments.forEach((comment) =>
+      commentMap.set(comment._id, { ...comment, replies: [] })
+    );
   
+    const rootComments: any[] = [];
+  
+    comments.forEach((comment) => {
+      if (comment.parentId) {
+        // Ajouter les commentaires enfants à leur parent
+        const parent = commentMap.get(comment.parentId);
+        if (parent) {
+          parent.replies.push(commentMap.get(comment._id));
+        }
+      } else {
+        // Ajouter les commentaires sans parent dans la racine
+        rootComments.push(commentMap.get(comment._id));
+      }
+    });
+    return rootComments;
+  }
 }

@@ -3,7 +3,7 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Chapter } from 'src/app/shared/models/chapter.model';
 import { Manga } from 'src/app/shared/models/manga.model';
 import { MangaService } from 'src/app/shared/services/manga.service';
-
+import { ViewService } from 'src/app/shared/services/view.service';
 @Component({
   selector: 'app-chapter-view',
   templateUrl: './chapter-view.component.html',
@@ -19,7 +19,8 @@ export class ChapterViewComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private mangaService: MangaService
+    private mangaService: MangaService,
+    private viewService:ViewService
   ) {}
 
   ngOnInit(): void {
@@ -27,9 +28,9 @@ export class ChapterViewComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.slug = params['slug'];
       this.chapterSlug = params['chapter'];
-      if (this.slug) {
+      if (this.slug && this.chapterSlug) {
         this.loadManga(this.slug);
-        
+        this.addView(this.chapterSlug)
       }
     });
   }
@@ -41,7 +42,9 @@ export class ChapterViewComponent implements OnInit {
       this.chapter = data.chapters[this.currentChapterIndex];
     });
   }
-
+  addView(Slug:string){
+    this.viewService.addView(Slug).subscribe((re)=>{});
+  }
   hasPreviousChapter(): boolean {
     return this.currentChapterIndex !== undefined && 
             this.currentChapterIndex > 0;

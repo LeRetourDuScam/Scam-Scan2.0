@@ -43,13 +43,15 @@
             <th class="px-4 py-2 border-b dark:border-gray-700 text-center">No</th>
             <th class="px-4 py-2 border-b dark:border-gray-700 text-center">Chapter</th>
             <th class="px-4 py-2 border-b dark:border-gray-700 text-center">Updated At</th>
+            <th class="px-4 py-2 border-b dark:border-gray-700 text-center">Views</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let chapter of dataSource.data; let i = index" [routerLink]="['/manga/view', manga?.slug, 'chapter', chapter.slug]" class="hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">
+          <tr *ngFor="let chapter of dataSource.data; let i = index" [routerLink]="['/manga/view', manga?.slug, 'chapter', chapter.slug]" class="hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer" >
             <td class="px-4 py-2 border-b dark:border-gray-700 text-center">{{ i + 1 }}</td>
             <td class="px-4 py-2 border-b dark:border-gray-700 text-center">{{ chapter.name }}</td>
             <td class="px-4 py-2 border-b dark:border-gray-700 text-center">{{ chapter.updated_at | date }}</td>
+            <td class="px-4 py-2 border-b dark:border-gray-700 text-center">{{ chapter.views || 'no views' }}</td>
           </tr>
         </tbody>
       </table>

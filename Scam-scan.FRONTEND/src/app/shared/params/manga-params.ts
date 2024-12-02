@@ -11,4 +11,5 @@ export interface MangaParams {
     language: string,
     rating: number,
     type: string,
+    orderBy: string,
 }
