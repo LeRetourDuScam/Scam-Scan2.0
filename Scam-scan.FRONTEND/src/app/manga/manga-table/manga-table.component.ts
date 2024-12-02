@@ -20,16 +20,9 @@ export class MangaTableComponent implements OnInit {
 
   public MangaParams!: MangaParams;
   public mangas: Manga[] = [];
-  public years: number[] = [];
 
   countMangas: number = 0;
   countPage: number = 0;
-  isExpanded = false;
-
-  public authorControl = new FormControl();
-  public ratingControl = new FormControl();
-  public publicationYearControl = new FormControl();
-
 
   public statusControl = new FormControl();
   public typeControl = new FormControl();
@@ -42,17 +35,15 @@ export class MangaTableComponent implements OnInit {
   LanguagesEnum = Object.values(Languages);
 
   constructor(
-    private mangaService: MangaService,
-    private snackbarService: SnackbarService,
+    private mangaService: MangaService
   ) {}
 
   ngOnInit(): void {
     this.MangaParams = { ...mangaParams };
-    this.generateYears();
     this.refreshManga();
   }
   
-
+  // requete API
   GetAllMangas(): void {
     this.mangaService.getMangas(this.MangaParams).subscribe(res => {
       this.mangas = res.data;
@@ -60,11 +51,16 @@ export class MangaTableComponent implements OnInit {
     });
   }
 
+  refreshManga() {
+    this.MangaParams.pageNumber = 1;
+    this.GetAllMangas();
+  }
+
+  // Pagination
   getLastChapters(manga: Manga) {
     return manga.chapters.slice(-3);
   }
 
-  // Pagination
   hasPreviousPage(): boolean {
     return this.MangaParams.pageNumber > 1;
   }
@@ -87,39 +83,21 @@ export class MangaTableComponent implements OnInit {
     }
   }
 
-  handleChange(event: any, param: keyof MangaParams, control: FormControl) {
-    if (event.target.value) {
-      const value = event.target.value.trim();
-      if (value) {
-        (this.MangaParams as any)[param] = value;
-        this.refreshManga();
-      }
+  // Filter
+  handleCheckboxChange(event: Event, param: keyof MangaParams) {
+    const checkbox = event.target as HTMLInputElement;
+    const value = checkbox.value;
+  
+    if (checkbox.checked) {
+      (this.MangaParams[param] as string[]).push(value);
     } else {
-      this.cleanParam(param, control);
+      const paramArray = this.MangaParams[param] as string[];
+      const index = paramArray.indexOf(value);
+      if (index > -1) {
+        paramArray.splice(index, 1);
+      }
     }
-  }
-
-  cleanParam(param: keyof MangaParams, control: FormControl) {
-    control.reset();
-    (this.MangaParams as any)[param] = '';
     this.refreshManga();
   }
 
-  toggleExpandable() {
-    this.isExpanded = !this.isExpanded;
-  }
-
-  generateYears(): number[] {
-    const currentYear = new Date().getFullYear();
-    for (let year = currentYear; year >= 1930; year--) {
-      this.years.push(year);
-    }
-    return this.years;
-  }
-
-
-  refreshManga() {
-    this.MangaParams.pageNumber = 1;
-    this.GetAllMangas();
-  }
 }

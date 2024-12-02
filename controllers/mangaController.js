@@ -41,18 +41,25 @@ exports.getMangas = async (req, res) => {
 };
 
 const setFilters = (query, filters) => {
-    if (filters.variousName) {
-        query = query.where('variousName').regex(new RegExp(filters.variousName, 'i'));
-    }
-    if (filters.slug) {
-        query = query.where('slug').equals(filters.slug);
-    }
+
     if (filters.genre) {
         const genres = filters.genre.split(',');
         query = query.where('genre').in(genres);
     }
+    if (filters.language) {
+        const languages = filters.language.split(',');
+        query = query.where('language').in(languages);
+    }
     if (filters.status) {
-        query = query.where('status').equals(filters.status);
+        const statuses = filters.status.split(',');
+        query = query.where('status').in(statuses);
+    }
+    if (filters.type) {
+        const types = filters.type.split(',');
+        query = query.where('type').in(types);
+    }
+    if (filters.slug) {
+        query = query.where('slug').equals(filters.slug);
     }
     if (filters.author) {
         query = query.where('author').regex(new RegExp(filters.author, 'i'));
@@ -60,17 +67,8 @@ const setFilters = (query, filters) => {
     if (filters.popularity) {
         query = query.where('popularity').equals(filters.popularity);
     }
-    if (filters.publicationYear) {
-        query = query.where('publicationYear').equals(filters.publicationYear);
-    }
-    if (filters.language) {
-        query = query.where('language').equals(filters.language);
-    }
     if (filters.rating) {
         query = query.where('rating').gte(filters.rating);
-    }
-    if (filters.type) {
-        query = query.where('type').equals(filters.type);
     }
     return query;
 };

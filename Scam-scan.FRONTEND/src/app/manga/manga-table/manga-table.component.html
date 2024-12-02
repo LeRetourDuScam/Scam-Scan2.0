@@ -1,155 +1,75 @@
 <div class="py-10">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8 justify-center">
-    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-6 text-red-600 dark:text-red-400">
-      All Mangas
-    </h2>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
 
-    <div class="w-full">
-      <div class="flex justify-center">
-        <button 
-        (click)="toggleExpandable()" 
-        class="w-2/3 bg-red-500 text-white rounded-lg px-4 py-2 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-600"
-      >
-        {{ isExpanded ? 'Hide Filters' : 'Show Filters' }}
-      </button>
-    </div>
+  
+      <!-- Checkbox Filters -->
+        <div class="top-12 left-0 z-10 bg-white border border-gray-300 dark:bg-gray-800 dark:border-none shadow-lg rounded-lg p-4 space-y-4 ">
+          <h2 class="text-center text-red-600 dark:text-red-400">FILTERS</h2>
+          
+          <div class="flex flex-wrap justify-around p-5 ">
 
-    <div *ngIf="isExpanded" class="flex justify-center flex-wrap">
-      <div class="w-2/3 flex items-center pt-3">
-        <input 
-          type="text" 
-          placeholder="Author" 
-          (keyup)="handleChange($event,'author',authorControl)" 
-          [formControl]="authorControl" 
-          class="flex-grow border border-gray-300 rounded-lg shadow-sm px-4 py-2 bg-white text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:placeholder-gray-500"
-        />
-        <button 
-          aria-label="Clear" 
-          (click)="cleanParam('author',authorControl)" 
-          *ngIf="this.MangaParams.author" 
-          class="bg-red-500 text-white rounded-lg px-4 py-2 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-600"
-        >
-          Clear
-        </button>
-      </div>
-
-
-      <div class="w-2/3 flex items-center pt-3">
-        <input 
-          type="text" 
-          placeholder="Rating" 
-          (keyup)="handleChange($event,'rating',ratingControl)" 
-          [formControl]="ratingControl" 
-          class="flex-grow border border-gray-300 rounded-lg shadow-sm px-4 py-2 bg-white text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:placeholder-gray-500"
-        />
-        <button 
-          aria-label="Clear" 
-          (click)="cleanParam('rating',ratingControl)" 
-          *ngIf="this.MangaParams.rating" 
-          class="bg-red-500 text-white rounded-lg px-4 py-2 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-600"
-        >
-          Clear
-        </button>
-      </div>
-
-      <div class="w-2/3 flex items-center pt-3">
-        <select 
-        id="status-select"
-          [formControl]="statusControl" 
-          (change)="handleChange($event,'status',statusControl)" 
-          class="flex-grow border border-gray-300 rounded-lg shadow-sm px-4 py-2 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-600 dark:bg-gray-700 dark:text-white dark:border-gray-600"
-        >
-         <option disabled>Select Status</option>
-          <option *ngFor="let status of StatusEnum" [value]="status">{{ status }}</option>
-        </select>
-        <button 
-          aria-label="Clear" 
-          (click)="cleanParam('status',statusControl)" 
-          *ngIf="this.MangaParams.status" 
-          class="bg-red-500 text-white rounded-lg px-4 py-2 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-600"
-        >
-          Clear
-        </button>
-      </div>
-
-      <div class="w-2/3 flex items-center pt-3">
-        <select 
-        id="years-select"
-          [formControl]="publicationYearControl" 
-          (change)="handleChange($event,'publicationYear',publicationYearControl)" 
-          class="flex-grow border border-gray-300 rounded-lg shadow-sm px-4 py-2 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-600 dark:bg-gray-700 dark:text-white dark:border-gray-600"
-        >
-        <option disabled>Select Year</option>
-          <option *ngFor="let publicationYear of years" [value]="publicationYear">{{ publicationYear }}</option>
-        </select>
-        <button 
-          aria-label="Clear" 
-          (click)="cleanParam('publicationYear',publicationYearControl)" 
-          *ngIf="this.MangaParams.publicationYear" 
-          class="bg-red-500 text-white rounded-lg px-4 py-2 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-600"
-        >
-          Clear
-        </button>
-      </div>
-
-      <div class="w-2/3 flex items-center pt-3">
-        <select 
-          [formControl]="typeControl" 
-          (change)="handleChange($event,'type',typeControl)" 
-          class="flex-grow border border-gray-300 rounded-lg shadow-sm px-4 py-2 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-600 dark:bg-gray-700 dark:text-white dark:border-gray-600"
-        >
-        <option disabled>Select Type</option>
-          <option *ngFor="let type of TypesEnum" [value]="type">{{ type }}</option>
-        </select>
-        <button 
-          aria-label="Clear" 
-          (click)="cleanParam('type',typeControl)" 
-          *ngIf="this.MangaParams.type" 
-          class="bg-red-500 text-white rounded-lg px-4 py-2 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-600"
-        >
-          Clear
-        </button>
-      </div>
-
-      <div class="w-2/3 flex items-center pt-3">
-        <select 
-          [formControl]="genreControl" 
-          (change)="handleChange($event,'genre',genreControl)" 
-          class="flex-grow border border-gray-300 rounded-lg shadow-sm px-4 py-2 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-600 dark:bg-gray-700 dark:text-white dark:border-gray-600"
-        >
-        <option disabled>Select Genre</option>
-          <option *ngFor="let genre of GenresEnum" [value]="genre">{{ genre }}</option>
-        </select>
-        <button 
-          aria-label="Clear" 
-          (click)="cleanParam('genre',genreControl)" 
-          *ngIf="this.MangaParams.genre" 
-          class="bg-red-500 text-white rounded-lg px-4 py-2 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-600"
-        >
-          Clear
-        </button>
-      </div>
-
-      <div class="w-2/3 flex items-center pt-3">
-        <select 
-          [formControl]="languageControl" 
-          (change)="handleChange($event,'language',languageControl)" 
-          class="flex-grow border border-gray-300 rounded-lg shadow-sm px-4 py-2 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-600 dark:bg-gray-700 dark:text-white dark:border-gray-600"
-        >
-        <option disabled>Select Language</option>
-          <option *ngFor="let language of LanguagesEnum" [value]="language">{{ language }}</option>
-        </select>
-        <button 
-          aria-label="Clear" 
-          (click)="cleanParam('language',languageControl)" 
-          *ngIf="this.MangaParams.language" 
-          class="bg-red-500 text-white rounded-lg px-4 py-2 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-600"
-        >
-          Clear
-        </button>
-      </div>
-    </div>
-
+          <div class="">
+            <h3 class="text-lg font-semibold mb-2 text-red-600 dark:text-red-400">Status</h3>
+              <div *ngFor="let status of StatusEnum" class="flex items-center ">
+                <input 
+                  type="checkbox" 
+                  [formControl]="statusControl" 
+                  [value]="status" 
+                  (change)="handleCheckboxChange($event, 'status')" 
+                  class="mr-2"
+                />
+                <label class="text-gray-700 dark:text-white ">{{ status }}</label>
+              </div>
+          </div>
+      
+          <!-- Types -->
+          <div class="">
+            <h3 class="text-lg font-semibold mb-2 text-red-600 dark:text-red-400">Types</h3>
+              <div *ngFor="let type of TypesEnum" class="flex items-center">
+                <input 
+                  type="checkbox" 
+                  [formControl]="typeControl" 
+                  [value]="type" 
+                  (change)="handleCheckboxChange($event, 'type')" 
+                  class="mr-2"
+                />
+                <label class="text-gray-700 dark:text-white">{{ type }}</label>
+              </div>
+          </div>
+      
+          <!-- Genres -->
+          <div class="">
+            <h3 class="text-lg font-semibold mb-2 text-red-600 dark:text-red-400">Genres</h3>
+              <div *ngFor="let genre of GenresEnum" class="flex items-center">
+                <input 
+                  type="checkbox" 
+                  [formControl]="genreControl" 
+                  [value]="genre" 
+                  (change)="handleCheckboxChange($event, 'genre')" 
+                  class="mr-2"
+                />
+                <label class="text-gray-700 dark:text-white">{{ genre }}</label>
+              </div>
+          </div>
+      
+          <!-- Languages -->
+          <div class="">
+            <h3 class="text-lg font-semibold mb-2 text-red-600 dark:text-red-400">Languages</h3>
+              <div *ngFor="let language of LanguagesEnum" class="flex items-center">
+                <input 
+                  type="checkbox" 
+                  [formControl]="languageControl" 
+                  [value]="language" 
+                  (change)="handleCheckboxChange($event, 'language')" 
+                  class="mr-2 "
+                />
+                <label class="text-gray-700 dark:text-white">{{ language }}</label>
+              </div>
+          </div>
+        </div>
+      </div>    
+    
+ 
     <section class="mt-8">
       <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div 
@@ -178,6 +98,7 @@
         </div>
       </div>
     </section>
+
     <div class="flex justify-center mt-8 space-x-4">
       <button 
         (click)="previousPage()" 
@@ -194,5 +115,6 @@
         Page Suivant
       </button>
     </div>
+
   </div>
 </div>
