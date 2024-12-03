@@ -1,43 +1,49 @@
 <div class="min-h-screen flex flex-col">
-  <header class="bg-red-600 text-white p-4 flex justify-between items-center">
-    <div class="flex gap-4 items-center">
-      <div routerLink="" class="text-2xl font-bold hover:cursor-pointer">MangaWorld</div>
-      <nav class="hidden md:flex space-x-4">
-        <a routerLink="/manga" class="hover:text-gray-300">Browse</a>
-        <a routerLink="/bookmark" class="hover:text-gray-300 material-icons" *ngIf="this.authService.isLoggedIn()">bookmark</a>
-      </nav>
-    </div>
-    <div class="flex items-center space-x-2">
-      <button
-        *ngIf="!this.authService.isLoggedIn()"
-        routerLink="/login"
-        class="bg-white text-red-600 px-4 py-2 rounded hover:bg-gray-200"
-      >
-        Se connecter
-      </button>
-      <button
-        *ngIf="!this.authService.isLoggedIn()"
-        routerLink="/register"
-        class="bg-white text-red-600 px-4 py-2 rounded hover:bg-gray-200"
-      >
-        S'inscrire
-      </button>
-      <button
-        *ngIf="this.authService.isLoggedIn()"
-        (click)="this.authService.logout()"
-        class="bg-white text-red-600 px-4 py-2 rounded hover:bg-gray-200"
-      >
-        Déconnexion
-      </button>
-      <app-search-bar
-        *ngIf="this.authService.isLoggedIn()"
-        class="flex-grow"
-      ></app-search-bar>
-      <button (click)="toggleDarkMode()" class="bg-white text-red-600 px-4 py-2 rounded hover:bg-gray-200 material-icons">
-        dark_mode
-      </button>
+  <header class="bg-red-600">
+    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+      <div class="relative flex h-16 items-center justify-between">
+        <div class="flex gap-4 items-center">
+          <div routerLink="" class="text-2xl font-bold text-white hover:cursor-pointer">MangaWorld</div>
+          <nav class="hidden md:flex space-x-4">
+            <a routerLink="/manga" class="text-white hover:text-gray-300">Browse</a>
+            <a routerLink="/bookmark" class="text-white hover:text-gray-300 material-icons" *ngIf="this.authService.isLoggedIn()">bookmark</a>
+          </nav>
+        </div>
+  
+        <div class="flex items-center space-x-2">
+          <button
+            *ngIf="!this.authService.isLoggedIn()"
+            routerLink="/login"
+            class="bg-white text-red-600 px-4 py-2 rounded hover:bg-gray-200"
+          >
+            Se connecter
+          </button>
+          <button
+            *ngIf="!this.authService.isLoggedIn()"
+            routerLink="/register"
+            class="bg-white text-red-600 px-4 py-2 rounded hover:bg-gray-200"
+          >
+            S'inscrire
+          </button>
+          <button
+            *ngIf="this.authService.isLoggedIn()"
+            (click)="this.authService.logout()"
+            class="bg-white text-red-600 px-4 py-2 rounded hover:bg-gray-200"
+          >
+            Déconnexion
+          </button>
+          <app-search-bar
+            *ngIf="this.authService.isLoggedIn()"
+            class="flex-grow"
+          ></app-search-bar>
+          <button (click)="toggleDarkMode()" class="bg-white text-red-600 px-4 py-2 rounded hover:bg-gray-200 material-icons">
+            dark_mode
+          </button>
+        </div>
+      </div>
     </div>
   </header>
+  
 
     <router-outlet></router-outlet>
 

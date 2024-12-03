@@ -10,12 +10,21 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { BookmarkMangaComponent } from './manga/bookmark-manga/bookmark-manga.component';
 const routes: Routes = [
   {path: '', component:HomepageComponent},
+
   { path: 'manga', component: MangaTableComponent },
+
   { path: 'manga/view/:slug', component: MangaViewComponent },
+
   { path: 'manga/view/:slug/chapter/:chapter', component: ChapterViewComponent },
+  
   { path: 'login', component: LoginComponent }, 
+
   { path: 'register', component: RegisterComponent }, 
+
   { path: 'bookmark',component:BookmarkMangaComponent},
+
+  { path: 'contact',component:ContactComponent},
+
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 

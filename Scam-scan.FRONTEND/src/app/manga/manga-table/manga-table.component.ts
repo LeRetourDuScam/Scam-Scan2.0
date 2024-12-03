@@ -18,6 +18,14 @@ import { Languages } from 'src/app/shared/enums/languages.enum';
 export class MangaTableComponent implements OnInit {
   @Input() defaultMangaParams!: MangaParams;
 
+  isExpanded = {
+    status: false,
+    types: false,
+    genres: false,
+    languages: false,
+    ratings:false
+  };
+
   public MangaParams!: MangaParams;
   public mangas: Manga[] = [];
 
@@ -100,4 +108,8 @@ export class MangaTableComponent implements OnInit {
     this.refreshManga();
   }
 
+
+  toggleSection(section: keyof typeof this.isExpanded) {
+    this.isExpanded[section] = !this.isExpanded[section];
+  }
 }

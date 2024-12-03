@@ -25,6 +25,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CommentComponent } from './others/comment/comment.component';
+import { NotFoundComponent } from './others/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { CommentComponent } from './others/comment/comment.component';
     HomepageComponent,
     BookmarkMangaComponent,
     CommentComponent,
+    NotFoundComponent,
     
   ],
   imports: [
