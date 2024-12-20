@@ -9,11 +9,21 @@ import { Status } from 'src/app/shared/enums/status.enum';
 import { Types } from 'src/app/shared/enums/types.enum';
 import { Genres } from 'src/app/shared/enums/genres.enum';
 import { Languages } from 'src/app/shared/enums/languages.enum';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-manga-table',
   templateUrl: './manga-table.component.html',
-  styleUrls: ['./manga-table.component.scss']
+  styleUrls: ['./manga-table.component.scss'],
+  animations: [
+    trigger('toggleHeight', [
+      state('collapsed', style({ height: '0px', overflow: 'hidden', opacity: 0 })),
+      state('expanded', style({ height: '*', opacity: 1 })),
+      transition('collapsed <=> expanded', [
+        animate('300ms ease-in-out')
+      ])
+    ])
+  ]
 })
 export class MangaTableComponent implements OnInit {
   @Input() defaultMangaParams!: MangaParams;

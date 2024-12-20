@@ -17,7 +17,7 @@
             </span>
           </button>
         </h3>
-        <div class="pt-6" id="filter-section-0" [ngClass]="{'hidden': !isExpanded.status}">
+        <div class="pt-6" id="filter-section-0" [@toggleHeight]="isExpanded.status ? 'expanded' : 'collapsed'">
           <div class="space-y-4">
             <div *ngFor="let status of StatusEnum" class="flex items-center">
               <input id="filter-status-{{status}}" name="status[]" type="checkbox" [value]="status" (change)="handleCheckboxChange($event, 'status')" class="h-4 w-4 border-flex-300 rounded text-indigo-600 focus:ring-indigo-500">
@@ -41,7 +41,7 @@
             </span>
           </button>
         </h3>
-        <div class="pt-6" id="filter-section-1" [ngClass]="{'hidden': !isExpanded.types}">
+        <div class="pt-6" id="filter-section-1" [@toggleHeight]="isExpanded.types ? 'expanded' : 'collapsed'">
           <div class="space-y-4">
             <div *ngFor="let type of TypesEnum" class="flex items-center">
               <input id="filter-type-{{type}}" name="type[]" type="checkbox" [value]="type" (change)="handleCheckboxChange($event, 'type')" class="h-4 w-4 border-flex-300 rounded text-indigo-600 focus:ring-indigo-500">
@@ -65,7 +65,7 @@
             </span>
           </button>
         </h3>
-        <div class="pt-6" id="filter-section-2" [ngClass]="{'hidden': !isExpanded.genres}">
+        <div class="pt-6" id="filter-section-2" [@toggleHeight]="isExpanded.genres ? 'expanded' : 'collapsed'">
           <div class="space-y-4">
             <div *ngFor="let genre of GenresEnum" class="flex items-center">
               <input id="filter-genre-{{genre}}" name="genre[]" type="checkbox" [value]="genre" (change)="handleCheckboxChange($event, 'genre')" class="h-4 w-4 border-flex-300 rounded text-indigo-600 focus:ring-indigo-500">
@@ -89,7 +89,7 @@
             </span>
           </button>
         </h3>
-        <div class="pt-6" id="filter-section-3" [ngClass]="{'hidden': !isExpanded.languages}">
+        <div class="pt-6" id="filter-section-3" [@toggleHeight]="isExpanded.languages ? 'expanded' : 'collapsed'">
           <div class="space-y-4">
             <div *ngFor="let language of LanguagesEnum" class="flex items-center">
               <input id="filter-language-{{language}}" name="language[]" type="checkbox" [value]="language" (change)="handleCheckboxChange($event, 'language')" class="h-4 w-4 border-flex-300 rounded text-indigo-600 focus:ring-indigo-500">
@@ -99,29 +99,6 @@
         </div>
       </div>
 
-      <!-- <div class="border-b w-5/6 py-6">
-        <h3 class="-my-3 flow-root">
-          <button type="button" class="flex  w-full items-center justify-between bg-white py-3 text-sm text-flex-400 hover:text-flex-500" aria-controls="filter-section-3" aria-expanded="false" (click)="toggleSection('ratings')">
-            <span class="font-medium text-flex-900">Ratings</span>
-            <span class="ml-6 flex items-center">
-              <svg *ngIf="!isExpanded.languages" class="size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" />
-              </svg>
-              <svg *ngIf="isExpanded.languages" class="size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                <path fill-rule="evenodd" d="M4 10a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H4.75A.75.75 0 0 1 4 10Z" clip-rule="evenodd" />
-              </svg>
-            </span>
-          </button>
-        </h3>
-        <div class="pt-6" id="filter-section-3" [ngClass]="{'hidden': !isExpanded.languages}">
-          <div class="space-y-4">
-            <div *ngFor="let language of LanguagesEnum" class="flex items-center">
-              <input id="filter-language-{{language}}" name="language[]" type="checkbox" [value]="language" (change)="handleCheckboxChange($event, 'language')" class="h-4 w-4 border-flex-300 rounded text-indigo-600 focus:ring-indigo-500">
-              <label for="filter-language-{{language}}" class="ml-3 text-sm text-flex-600">{{ language }}</label>
-            </div>
-          </div>
-        </div>
-      </div> -->
     </section>
     
     <section class="w-2/3">
