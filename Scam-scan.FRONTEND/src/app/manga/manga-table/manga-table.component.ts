@@ -29,11 +29,11 @@ export class MangaTableComponent implements OnInit {
   @Input() defaultMangaParams!: MangaParams;
 
   isExpanded = {
-    status: false,
-    types: false,
-    genres: false,
-    languages: false,
-    ratings:false
+    status: true,
+    types: true,
+    genres: true,
+    languages: true,
+    ratings:true
   };
 
   public MangaParams!: MangaParams;
