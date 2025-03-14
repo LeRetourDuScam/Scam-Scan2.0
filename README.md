@@ -1,93 +1,150 @@
-# Scam-scan2.0
+# Scam-Scan 2.0 - Site de Lecture Manga
 
+Scam-Scan 2.0 est une plateforme web dédiée à la lecture en ligne de mangas. Ce projet permet aux utilisateurs de découvrir, lire et suivre les derniers chapitres de leurs mangas préférés grâce à une interface moderne, intuitive et responsive.
 
+---
 
-## Getting started
+## Table des matières
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+- [Description](#description)
+- [Fonctionnalités](#fonctionnalités)
+- [Architecture du Projet](#architecture-du-projet)
+- [Installation](#installation)
+- [Utilisation](#utilisation)
+- [Contribution](#contribution)
+- [Licence](#licence)
+- [Auteurs et Remerciements](#auteurs-et-remerciements)
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://git.s2.rpn.ch/MelroSD1/scam-scan2.0.git
-git branch -M main
-git push -uf origin main
-```
-
-## Integrate with your tools
-
-- [ ] [Set up project integrations](https://git.s2.rpn.ch/MelroSD1/scam-scan2.0/-/settings/integrations)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
+---
 
 ## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+Scam-Scan 2.0 est une solution complète pour la lecture de mangas en ligne. Le projet se divise en plusieurs parties :
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+- **Scam-scan.FRONTEND** : L'interface utilisateur développée en HTML, CSS (SCSS) et TypeScript/JavaScript pour une expérience de lecture fluide et réactive.
+- **Scam-scan.BACKEND** : Le serveur qui gère les requêtes, l’authentification et l’accès aux données des mangas.
+- **Scam-scan.DATASCRIPT** : Les scripts dédiés à la récupération, la mise à jour et le traitement des données (chapitres, titres, images, etc.).
+
+Ce projet vise à offrir une plateforme centralisée où les passionnés de manga peuvent facilement accéder aux contenus à jour.
+
+---
+
+## Fonctionnalités
+
+- **Lecture en ligne** : Accès aux chapitres de mangas via une interface dédiée.
+- **Mise à jour automatique** : Récupération régulière des nouveaux chapitres grâce à des scripts automatisés.
+- **Navigation intuitive** : Interface réactive permettant de rechercher et filtrer les mangas par genres ou titres.
+- **Design responsive** : Optimisé pour une lecture sur ordinateurs, tablettes et smartphones.
+- **Sécurité et performance** : Architecture backend conçue pour offrir une navigation sécurisée et fluide.
+
+---
+
+## Architecture du Projet
+
+Le projet est organisé en trois grands dossiers :
+
+- **Scam-scan.FRONTEND** : Contient le code source de l'interface utilisateur (pages web, composants, styles, etc.).
+- **Scam-scan.BACKEND** : Regroupe les fichiers liés au serveur (API, gestion des utilisateurs, connexions à la base de données, etc.).
+- **Scam-scan.DATASCRIPT** : Scripts d'import, d'analyse et de mise à jour des données des mangas.
+
+Cette structure modulaire facilite le développement, la maintenance et l’évolution du projet.
+
+---
 
 ## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+### Prérequis
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+- **Node.js** (version 14 ou supérieure)
+- **npm** ou **yarn**
+- **Git**
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+### Étapes d'installation
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+1. **Cloner le dépôt :**
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+   ```bash
+   git clone https://github.com/LeRetourDuScam/Scam-Scan2.0.git
+   cd Scam-Scan2.0
+## Installation des dépendances
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+### Pour le frontend
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+```bash
+cd Scam-scan.FRONTEND
+npm install
+Pour le backend
+bash
+Copy
+Edit
+cd ../Scam-scan.BACKEND
+npm install
+Pour les datascripts (si nécessaire)
+bash
+Copy
+Edit
+cd ../Scam-scan.DATASCRIPT
+npm install
+Configuration
+Vérifiez et modifiez les fichiers de configuration (ex. .env) dans les dossiers FRONTEND et BACKEND selon vos besoins (port, base de données, clés API, etc.).
 
-## License
-For open source projects, say how it is licensed.
+Utilisation
+Démarrage du projet
+Backend
+Dans le dossier Scam-scan.BACKEND, lancez le serveur avec :
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+bash
+Copy
+Edit
+npm start
+Frontend
+Dans le dossier Scam-scan.FRONTEND, démarrez l’interface utilisateur :
+
+bash
+Copy
+Edit
+npm start
+Datascripts
+Pour exécuter manuellement les scripts de mise à jour des mangas, utilisez :
+
+bash
+Copy
+Edit
+node script.js
+(Adaptez les commandes en fonction des scripts et de votre gestionnaire de tâches.)
+
+Contribution
+Les contributions sont les bienvenues ! Pour contribuer :
+
+Forkez le dépôt.
+
+Créez une branche dédiée à votre fonctionnalité ou correction :
+
+bash
+Copy
+Edit
+git checkout -b feature/nom-de-la-fonctionnalite
+Développez et testez vos modifications.
+
+Committez vos changements :
+
+bash
+Copy
+Edit
+git commit -m "Ajout de la fonctionnalité XYZ"
+Poussez votre branche sur votre fork :
+
+bash
+Copy
+Edit
+git push origin feature/nom-de-la-fonctionnalite
+Ouvrez une Pull Request pour soumettre vos modifications.
+
+Licence
+Ce projet est distribué sous la licence MIT. Vous êtes libre de l'utiliser et de le modifier dans le respect des termes de cette licence.
+
+Auteurs et Remerciements
+LeRetourDuScam – Créateur et mainteneur principal.
+Un grand merci à toutes les personnes ayant contribué, testé et fourni des retours pour améliorer ce projet. N’hésitez pas à nous contacter pour toute question ou suggestion.
+
+Avec Scam-Scan 2.0, plongez dans l’univers du manga et profitez d’une expérience de lecture enrichie et accessible depuis tous vos supports. Bonne lecture !
