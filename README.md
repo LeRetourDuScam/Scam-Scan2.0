@@ -1,6 +1,6 @@
 # Scam-Scan 2.0 - Site de Lecture Manga
 
-Scam-Scan 2.0 est une plateforme web dédiée à la lecture en ligne de mangas. Ce projet permet aux utilisateurs de découvrir, lire et suivre les derniers chapitres de leurs mangas préférés grâce à une interface moderne, intuitive et responsive.
+Scam-Scan 2.0 est une plateforme web dédiée à la lecture en ligne de mangas. Ce projet avait pour but de s'entrainer avec angular et mieu comprendre certain concept du web il est fonctionnel. il suffit de créer un base mongodb et d'inserer les données avec les scripts mis a disposition pour le reste tout se trouve dans la suite du readme.
 
 ---
 
@@ -10,10 +10,8 @@ Scam-Scan 2.0 est une plateforme web dédiée à la lecture en ligne de mangas. 
 - [Fonctionnalités](#fonctionnalités)
 - [Architecture du Projet](#architecture-du-projet)
 - [Installation](#installation)
-- [Utilisation](#utilisation)
-- [Contribution](#contribution)
 - [Licence](#licence)
-- [Auteurs et Remerciements](#auteurs-et-remerciements)
+- [Auteurs](#auteurs)
 
 ---
 
@@ -32,7 +30,6 @@ Ce projet vise à offrir une plateforme centralisée où les passionnés de mang
 ## Fonctionnalités
 
 - **Lecture en ligne** : Accès aux chapitres de mangas via une interface dédiée.
-- **Mise à jour automatique** : Récupération régulière des nouveaux chapitres grâce à des scripts automatisés.
 - **Navigation intuitive** : Interface réactive permettant de rechercher et filtrer les mangas par genres ou titres.
 - **Design responsive** : Optimisé pour une lecture sur ordinateurs, tablettes et smartphones.
 - **Sécurité et performance** : Architecture backend conçue pour offrir une navigation sécurisée et fluide.
@@ -63,88 +60,56 @@ Cette structure modulaire facilite le développement, la maintenance et l’évo
 
 1. **Cloner le dépôt :**
 
-   ```bash
+   ```sh
    git clone https://github.com/LeRetourDuScam/Scam-Scan2.0.git
    cd Scam-Scan2.0
+   ```
 ## Installation des dépendances
 
 ### Pour le frontend
 
-```bash
+```sh
 cd Scam-scan.FRONTEND
 npm install
-Pour le backend
-bash
-Copy
-Edit
+```
+### Pour le backend
+```sh
 cd ../Scam-scan.BACKEND
 npm install
-Pour les datascripts (si nécessaire)
-bash
-Copy
-Edit
+```
+### Pour les datascripts (si nécessaire)
+```sh
 cd ../Scam-scan.DATASCRIPT
 npm install
-Configuration
+```
+
+## Configuration
 Vérifiez et modifiez les fichiers de configuration (ex. .env) dans les dossiers FRONTEND et BACKEND selon vos besoins (port, base de données, clés API, etc.).
 
-Utilisation
-Démarrage du projet
-Backend
+### Backend
 Dans le dossier Scam-scan.BACKEND, lancez le serveur avec :
 
-bash
-Copy
-Edit
+```sh
 npm start
-Frontend
+```
+### Frontend
 Dans le dossier Scam-scan.FRONTEND, démarrez l’interface utilisateur :
 
-bash
-Copy
-Edit
+```sh
 npm start
-Datascripts
+```
+
+### Datascripts
 Pour exécuter manuellement les scripts de mise à jour des mangas, utilisez :
 
-bash
-Copy
-Edit
+```sh
 node script.js
+```
+
 (Adaptez les commandes en fonction des scripts et de votre gestionnaire de tâches.)
 
-Contribution
-Les contributions sont les bienvenues ! Pour contribuer :
-
-Forkez le dépôt.
-
-Créez une branche dédiée à votre fonctionnalité ou correction :
-
-bash
-Copy
-Edit
-git checkout -b feature/nom-de-la-fonctionnalite
-Développez et testez vos modifications.
-
-Committez vos changements :
-
-bash
-Copy
-Edit
-git commit -m "Ajout de la fonctionnalité XYZ"
-Poussez votre branche sur votre fork :
-
-bash
-Copy
-Edit
-git push origin feature/nom-de-la-fonctionnalite
-Ouvrez une Pull Request pour soumettre vos modifications.
-
-Licence
+## Licence
 Ce projet est distribué sous la licence MIT. Vous êtes libre de l'utiliser et de le modifier dans le respect des termes de cette licence.
 
-Auteurs et Remerciements
+## Auteurs
 LeRetourDuScam – Créateur et mainteneur principal.
-Un grand merci à toutes les personnes ayant contribué, testé et fourni des retours pour améliorer ce projet. N’hésitez pas à nous contacter pour toute question ou suggestion.
-
-Avec Scam-Scan 2.0, plongez dans l’univers du manga et profitez d’une expérience de lecture enrichie et accessible depuis tous vos supports. Bonne lecture !
